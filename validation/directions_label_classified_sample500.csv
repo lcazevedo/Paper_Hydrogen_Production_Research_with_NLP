@@ -1,0 +1,501 @@
+directions_label,count,cluster,class_name
+Investigate Energy Level Shifts,1,0,Characterize Reaction Mechanisms
+Elucidate Composition-Structure-Activity Relationships,1,0,Characterize Reaction Mechanisms
+Elucidate Dynamic Oxygen Species,1,0,Characterize Reaction Mechanisms
+Elucidate H Adsorption Mechanisms,1,0,Characterize Reaction Mechanisms
+Elucidate Hydrogen Desorption Kinetics,4,0,Characterize Reaction Mechanisms
+Investigate SOR Pathways,1,0,Characterize Reaction Mechanisms
+Investigate Corrosion Synergistic Mechanisms,1,0,Characterize Reaction Mechanisms
+Overcome Reaction Hindrance,1,0,Characterize Reaction Mechanisms
+Explore Ti Species Kinetics,1,0,Characterize Reaction Mechanisms
+Elucidate Defect-Site Mechanisms,1,0,Characterize Reaction Mechanisms
+Enhance Urea Oxidation Potential,1,0,Characterize Reaction Mechanisms
+Investigate Heating Mechanisms,1,0,Characterize Reaction Mechanisms
+Investigate Oxygen Vacancy Role,4,0,Characterize Reaction Mechanisms
+Elucidate Protonic Discharge Mechanisms,1,0,Characterize Reaction Mechanisms
+Investigate Anion Substitution Effects,1,0,Characterize Reaction Mechanisms
+Develop Atomic-Scale Control,2,0,Characterize Reaction Mechanisms
+Investigate Substrate Functionalization,1,0,Characterize Reaction Mechanisms
+Standardize Hydrogen Spillover Methods,1,0,Characterize Reaction Mechanisms
+Investigate Thermal Effects,1,0,Characterize Reaction Mechanisms
+Investigate Anion Acceleration Mechanisms,1,0,Characterize Reaction Mechanisms
+Establish Oxygen-Activity Link,1,0,Characterize Reaction Mechanisms
+Investigate Coupling Interactions,1,0,Characterize Reaction Mechanisms
+Investigate Interfacial Energy Landscapes,1,0,Characterize Reaction Mechanisms
+Investigate Structure-Activity-Stability Relationship,1,0,Characterize Reaction Mechanisms
+Improve Anodic Reaction Dynamics,1,0,Characterize Reaction Mechanisms
+Investigate Vacancy Activation Mechanisms,1,0,Characterize Reaction Mechanisms
+Investigate Interfacial S-Sensitization,1,0,Characterize Reaction Mechanisms
+Elucidate Chalcogen Roles,1,0,Characterize Reaction Mechanisms
+Investigate Reaction Dynamics,9,0,Characterize Reaction Mechanisms
+Investigate Ion Reservoir Mechanism,1,0,Characterize Reaction Mechanisms
+Investigate Stability-Activity-Structure,1,0,Characterize Reaction Mechanisms
+Investigate pH Kinetics Impacts,1,0,Characterize Reaction Mechanisms
+Explore LDH Catalytic Activity,1,0,Characterize Reaction Mechanisms
+Generalize LDH growth mechanisms,1,0,Characterize Reaction Mechanisms
+Investigate Hydrogen Bonding Effects,9,0,Characterize Reaction Mechanisms
+Investigate Ni Effects,1,0,Characterize Reaction Mechanisms
+Investigate Impurity/Complex Interactions,1,0,Characterize Reaction Mechanisms
+Investigate Trimetal Sulfide Mechanisms,1,0,Characterize Reaction Mechanisms
+Investigate Plasma-Induced Vacancies,1,0,Characterize Reaction Mechanisms
+Explore Substrate Effects,3,0,Characterize Reaction Mechanisms
+Investigate Sabatier Adsorption Mechanism,1,0,Characterize Reaction Mechanisms
+Evaluate B-site Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Systematize Electrocatalyst Classifications,1,1,Develop Advanced Electrocatalysts
+Evaluate Earth-abundant electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Evaluate CP Electrocatalyst,1,1,Develop Advanced Electrocatalysts
+Evaluate GdCoO3 Electrocatalyst,1,1,Develop Advanced Electrocatalysts
+Expand Electrocatalytic Strategy,1,1,Develop Advanced Electrocatalysts
+Evaluate as-prepared electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Evaluate MoS2/N-MWCNT electrocatalyst,1,1,Develop Advanced Electrocatalysts
+Optimize Ru Electrocatalysts,13,1,Develop Advanced Electrocatalysts
+Evaluate Cobalt Disulfide Electrocatalysis,1,1,Develop Advanced Electrocatalysts
+Develop Metal-Organic Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Optimize MnO2 Electrocatalysis,1,1,Develop Advanced Electrocatalysts
+Evaluate Enhanced Electrocatalytic Materials,1,1,Develop Advanced Electrocatalysts
+Explore Neutral Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Control Morphology-Electrocatalytic Activity,1,1,Develop Advanced Electrocatalysts
+Develop Ce-based Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Maximize Pt Electrocatalyst Performance,1,1,Develop Advanced Electrocatalysts
+Evaluate GDY electrocatalyst performance,1,1,Develop Advanced Electrocatalysts
+Evaluate Rbf-Ni-MOF electrocatalysis,1,1,Develop Advanced Electrocatalysts
+Optimize Multi-Site Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Evaluate TMC electrocatalysts,6,1,Develop Advanced Electrocatalysts
+Develop Novel Electrocatalyst Architectures,6,1,Develop Advanced Electrocatalysts
+Develop Improved Electrocatalysis,2,1,Develop Advanced Electrocatalysts
+Evaluate Mo-C electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Elucidate Electrocatalyst Surface Area,2,1,Develop Advanced Electrocatalysts
+Develop Electrode Catalyst,1,1,Develop Advanced Electrocatalysts
+Evaluate Nanorods for Electrolysis,1,1,Develop Advanced Electrocatalysts
+Evaluate MTMCH electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Engineer Perovskite Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Explore Electrocatalytic Activity,6,1,Develop Advanced Electrocatalysts
+Develop Bio-Inspired Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Design Practical Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Optimize Electrocatalytic Seawater Processes,1,1,Develop Advanced Electrocatalysts
+Optimize H-GNF Electrocatalyst,1,1,Develop Advanced Electrocatalysts
+Evaluate TMN electrocatalysis,1,1,Develop Advanced Electrocatalysts
+Evaluate TMD electrocatalytic performance,1,1,Develop Advanced Electrocatalysts
+Optimize TiO2@NC-MO Electrocatalysis,1,1,Develop Advanced Electrocatalysts
+Optimize Nanostructured TMS Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Identify Stable Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Synthesize HER Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Optimize Clay Electrocatalysts,1,1,Develop Advanced Electrocatalysts
+Explore Composite Enhancement Strategies,1,2,Characterize Novel Materials
+Investigate Surface Evolution,4,2,Characterize Novel Materials
+Investigate Structural Formation,1,2,Characterize Novel Materials
+Characterize Tafel Slopes,89,2,Characterize Novel Materials
+Synthesize Composite Supports,1,2,Characterize Novel Materials
+Explore Defect Engineering Applications,1,2,Characterize Novel Materials
+Extend Surface Modification Method,1,2,Characterize Novel Materials
+Evaluate Stainless Steel Modification,1,2,Characterize Novel Materials
+Investigate Powder Characteristics,1,2,Characterize Novel Materials
+Characterize Annealing Products,1,2,Characterize Novel Materials
+Explore Material Flexibility,1,2,Characterize Novel Materials
+Investigate Novel Composite Activity,1,2,Characterize Novel Materials
+Investigate Defect Formation Methods,1,2,Characterize Novel Materials
+Characterize Surface Property Changes,1,2,Characterize Novel Materials
+Characterize Bimetallic Coatings,1,2,Characterize Novel Materials
+Characterize Mesoporous Material,5,2,Characterize Novel Materials
+Validate Composite Material Performance,1,2,Characterize Novel Materials
+Evaluate Novel Alloy Performance,1,2,Characterize Novel Materials
+Investigate Edge Site Formation,3,2,Characterize Novel Materials
+Explore TMN Material Properties,1,2,Characterize Novel Materials
+Synthesize Morphology-Controlled Materials,1,2,Characterize Novel Materials
+Enhance Material Properties,5,2,Characterize Novel Materials
+Expand Metal Application Strategy,1,2,Characterize Novel Materials
+Characterize Porous Structure Formation,2,2,Characterize Novel Materials
+Stabilize Metastable Materials,1,2,Characterize Novel Materials
+Evaluate Carbon Material Applications,1,2,Characterize Novel Materials
+Explore Visible Light HER,1,2,Characterize Novel Materials
+Develop Economical Material Alternatives,1,2,Characterize Novel Materials
+Explore Corrosion Engineering Applications,1,2,Characterize Novel Materials
+Investigate Morphological Effects,3,2,Characterize Novel Materials
+Investigate Aluminum Leaching,1,2,Characterize Novel Materials
+Develop Layer-by-Layer Exfoliation,1,2,Characterize Novel Materials
+Investigate Interface Effects,34,2,Characterize Novel Materials
+Explore Surface Amorphization Limits,1,2,Characterize Novel Materials
+Characterize Microplate Transformations,1,2,Characterize Novel Materials
+Develop POM Etching Techniques,1,2,Characterize Novel Materials
+Characterize In-Situ Growth,1,2,Characterize Novel Materials
+Characterize Surface Reconstruction,32,2,Characterize Novel Materials
+Develop In-situ Mass Detection,1,2,Characterize Novel Materials
+Compare Material Synthesis Methods,2,2,Characterize Novel Materials
+Quantify Etching Effects,2,2,Characterize Novel Materials
+Explore OCOR Applications,1,3,Characterize Structural Mechanisms
+Fabricate Scalable Morphologies,1,3,Characterize Structural Mechanisms
+Control Morphology via Precursors,1,3,Characterize Structural Mechanisms
+Explore ARD Binder Applications,1,3,Characterize Structural Mechanisms
+Characterize Structural Self-Optimization,1,3,Characterize Structural Mechanisms
+Overcome Water Crisis Barriers,1,3,Characterize Structural Mechanisms
+Establish Dynamic Information Acquisition,1,3,Characterize Structural Mechanisms
+Elucidate Co-POM structure,1,3,Characterize Structural Mechanisms
+Explore HEA Composition Spaces,1,3,Characterize Structural Mechanisms
+Maintain Hierarchical Structures,1,3,Characterize Structural Mechanisms
+Explore QD Applications,1,3,Characterize Structural Mechanisms
+Expand Method Application,1,3,Characterize Structural Mechanisms
+Characterize MOF Morphology,1,3,Characterize Structural Mechanisms
+Analyze Scientific Literature Trends,1,3,Characterize Structural Mechanisms
+Develop Scalable Immobilization Strategies,1,3,Characterize Structural Mechanisms
+Outline Future Directions,1,3,Characterize Structural Mechanisms
+Elucidate Heterointerface Function,2,3,Characterize Structural Mechanisms
+Characterize Morphological Evolution,2,3,Characterize Structural Mechanisms
+Investigate Sustainable Energy Production,1,3,Characterize Structural Mechanisms
+Develop Synergistic Active Sites,1,3,Characterize Structural Mechanisms
+Develop Cluster Models,1,3,Characterize Structural Mechanisms
+Improve HER Activity,10,3,Characterize Structural Mechanisms
+Develop Support Immobilization Techniques,1,3,Characterize Structural Mechanisms
+Explore Engineering Strategies,1,3,Characterize Structural Mechanisms
+Investigate Enhanced Active Sites,1,3,Characterize Structural Mechanisms
+Investigate Structural Origins,6,3,Characterize Structural Mechanisms
+Develop Hierarchical Microstructures,2,3,Characterize Structural Mechanisms
+Develop Complex Networks,1,3,Characterize Structural Mechanisms
+Investigate Synergistic Integration,1,3,Characterize Structural Mechanisms
+Explore MXene HER,1,3,Characterize Structural Mechanisms
+Validate Active Site Theory,2,3,Characterize Structural Mechanisms
+Develop Thorn-like Structures,1,3,Characterize Structural Mechanisms
+Elucidate TMD Regulation Mechanisms,1,3,Characterize Structural Mechanisms
+Conduct Systematic Reviews,1,3,Characterize Structural Mechanisms
+Develop Affordable Sensing Devices,1,3,Characterize Structural Mechanisms
+Develop Design Methodologies,1,3,Characterize Structural Mechanisms
+Determine Active Site Source,1,3,Characterize Structural Mechanisms
+Develop 2D CNQD Structures,1,3,Characterize Structural Mechanisms
+Develop On-Site Generation Methods,1,3,Characterize Structural Mechanisms
+Elucidate Formatiomering Behavior,1,3,Characterize Structural Mechanisms
+Characterize Structural Evolution,5,3,Characterize Structural Mechanisms
+Evaluate Transition Metal Alloys,1,4,Characterize Metal Doping Effects
+Investigate Fe Functionality,3,4,Characterize Metal Doping Effects
+Evaluate Transition Metal Replacements,1,4,Characterize Metal Doping Effects
+Elucidate Ru-O-Mo Site Formation,1,4,Characterize Metal Doping Effects
+Exploit Ruthenium-Pyridinic Interactions,1,4,Characterize Metal Doping Effects
+Elucidate Doping-Polysulfide Interactions,1,4,Characterize Metal Doping Effects
+Investigate Heterointerface Electron Dynamics,1,4,Characterize Metal Doping Effects
+Investigate Ir Surface Effects,1,4,Characterize Metal Doping Effects
+Explore Nitride MXene Properties,1,4,Characterize Metal Doping Effects
+Develop Core-Shell Doping,1,4,Characterize Metal Doping Effects
+Correlate Oxidation States,3,4,Characterize Metal Doping Effects
+Explore Metal Nitrides,1,4,Characterize Metal Doping Effects
+Investigate Graphene Defect Effects,1,4,Characterize Metal Doping Effects
+Evaluate RuO-doped FeO performance,1,4,Characterize Metal Doping Effects
+Investigate Supporting Electron Effects,1,4,Characterize Metal Doping Effects
+Develop Novel Spinel Oxides,1,4,Characterize Metal Doping Effects
+Explore Heusler Alloys,1,4,Characterize Metal Doping Effects
+Evaluate Mn-based MOF activity,1,4,Characterize Metal Doping Effects
+Predict OER Overpotentials,1,4,Characterize Metal Doping Effects
+Evaluate Metal Cation Effects,1,4,Characterize Metal Doping Effects
+Explore Molybdenum Compound HER,1,4,Characterize Metal Doping Effects
+Explore Single Atom Effects,2,4,Characterize Metal Doping Effects
+Develop Strain-Driven Doping,1,4,Characterize Metal Doping Effects
+Investigate Electronic Structure Interactions,2,4,Characterize Metal Doping Effects
+Investigate Novel Cathode Materials,1,4,Characterize Metal Doping Effects
+Explore TM Doping Strategies,1,4,Characterize Metal Doping Effects
+Investigate Electronic Factors,2,4,Characterize Metal Doping Effects
+Investigate Band Crossing Effects,1,4,Characterize Metal Doping Effects
+Elucidate Metal-Support Stability,1,4,Characterize Metal Doping Effects
+Improve HE-LDH Properties,1,4,Characterize Metal Doping Effects
+Modulate Atomic Arrangements,1,4,Characterize Metal Doping Effects
+Investigate Crystal Stack Formation,1,4,Characterize Metal Doping Effects
+Develop Electronic Structure Adjustments,1,4,Characterize Metal Doping Effects
+Characterize Oxide Material Properties,1,4,Characterize Metal Doping Effects
+Evaluate Metal Ion Effects,1,4,Characterize Metal Doping Effects
+Improve RuO2/CS overpotential,1,4,Characterize Metal Doping Effects
+Investigate Nucleation-Doping Competition,2,4,Characterize Metal Doping Effects
+Explore Ternary Compound Properties,1,4,Characterize Metal Doping Effects
+Synthesize Doped 1T-MoS2,1,4,Characterize Metal Doping Effects
+Characterize Ruthenium Complexes,1,4,Characterize Metal Doping Effects
+Investigate Vacancy Doping,1,4,Characterize Metal Doping Effects
+Optimize Catalytic Interfaces,10,5,Optimize Catalytic Systems
+Investigate Disordered Catalyst Structures,1,5,Optimize Catalytic Systems
+Optimize Nanoscale Catalyst Systems,1,5,Optimize Catalytic Systems
+Elucidate Catalyst Structure,16,5,Optimize Catalytic Systems
+Develop Non-Noble HER Catalysts,1,5,Optimize Catalytic Systems
+Characterize Active Catalytic Sites,2,5,Optimize Catalytic Systems
+Optimize Nano-Catalyst Performance,1,5,Optimize Catalytic Systems
+Explore ZIF Catalysis,1,5,Optimize Catalytic Systems
+Summarize Metallene Catalyst Status,1,5,Optimize Catalytic Systems
+Develop Advanced Catalyst Carriers,1,5,Optimize Catalytic Systems
+Optimize Composite Catalyst Systems,1,5,Optimize Catalytic Systems
+Develop Bi-TMC Catalysts,1,5,Optimize Catalytic Systems
+Elucidate Super-Exchange Catalysts,1,5,Optimize Catalytic Systems
+Develop TMD Hybrid Catalysts,1,5,Optimize Catalytic Systems
+Improve OER Catalyst Activity,2,5,Optimize Catalytic Systems
+Enable Pt Catalyst Scale-Up,1,5,Optimize Catalytic Systems
+Develop Robust Bifunctional Catalysts,22,5,Optimize Catalytic Systems
+Optimize RuIr-NC Catalyst,1,5,Optimize Catalytic Systems
+Synthesize Composite Catalyst Materials,1,5,Optimize Catalytic Systems
+Explore Waste-Derived Catalysts,1,5,Optimize Catalytic Systems
+Investigate Catalyst Activation Methods,1,5,Optimize Catalytic Systems
+Develop Heterophase Catalysts,3,5,Optimize Catalytic Systems
+Explore Biomass Catalysis,1,5,Optimize Catalytic Systems
+Evaluate Non-Expensive Catalysts,1,5,Optimize Catalytic Systems
+Develop Catalyst Supports,2,5,Optimize Catalytic Systems
+Improve Durability of Catalysts,2,5,Optimize Catalytic Systems
+Evaluate 2D graphene catalysts,1,5,Optimize Catalytic Systems
+Characterize Hollow Catalyst Designs,1,5,Optimize Catalytic Systems
+Develop Novel Catalytic MOFs,1,5,Optimize Catalytic Systems
+Optimize Ir-based Catalyst,1,5,Optimize Catalytic Systems
+Validate Polyoxometalate Catalysts,1,5,Optimize Catalytic Systems
+Optimize Catalyst Desorption,1,5,Optimize Catalytic Systems
+Evaluate Defect-Engineered Catalysts,1,5,Optimize Catalytic Systems
+Optimize RuO x @C-N Catalyst,1,5,Optimize Catalytic Systems
+Optimize NiNH/NF Catalysts,1,5,Optimize Catalytic Systems
+Quantify Catalyst Performance Variations,1,5,Optimize Catalytic Systems
+Evaluate ES-MWNT catalyst performance,1,5,Optimize Catalytic Systems
+Scale Up Catalyst Performance,1,5,Optimize Catalytic Systems
+Optimize Green Catalyst Synthesis,1,5,Optimize Catalytic Systems
+Optimize Nanomaterial Catalytic Activity,1,5,Optimize Catalytic Systems
+Develop Tuned Catalysts,1,5,Optimize Catalytic Systems
+Characterize Dopant Influence,1,6,Evaluate Performance Conditions
+Predict SAC Performance,1,6,Evaluate Performance Conditions
+Integrate Computational & Experimental Data,1,6,Evaluate Performance Conditions
+Validate Activity Volcano Model,1,6,Evaluate Performance Conditions
+Characterize Support Effects,3,6,Evaluate Performance Conditions
+Investigate Coordination Stability,1,6,Evaluate Performance Conditions
+Investigate Activity-Vacancy Relationship,1,6,Evaluate Performance Conditions
+Compare Stability Mechanisms,1,6,Evaluate Performance Conditions
+Investigate Transient Behavior,1,6,Evaluate Performance Conditions
+Evaluate Binder-Free HER,1,6,Evaluate Performance Conditions
+Investigate Correlation Relationships,3,6,Evaluate Performance Conditions
+Calculate Thermodynamic Properties,1,6,Evaluate Performance Conditions
+Investigate Volmer Step Control,1,6,Evaluate Performance Conditions
+Investigate Defect-Controlled Stability,1,6,Evaluate Performance Conditions
+Elucidate TRGO function,1,6,Evaluate Performance Conditions
+Characterize OER Activity,3,6,Evaluate Performance Conditions
+Investigate Light Sensitivity,1,6,Evaluate Performance Conditions
+Develop Monitoring Techniques,1,6,Evaluate Performance Conditions
+Compare Spin States,1,6,Evaluate Performance Conditions
+Validate Performance Enhancement,1,6,Evaluate Performance Conditions
+Predict Overpotential with ML,1,6,Evaluate Performance Conditions
+Investigate Framework Degradation,1,6,Evaluate Performance Conditions
+Evaluate CBD Electrode Performance,1,6,Evaluate Performance Conditions
+Evaluate CoFe LDHs Performance,1,6,Evaluate Performance Conditions
+Investigate Stability-Activity Tradeoffs,1,6,Evaluate Performance Conditions
+Explore MOF Performance,2,6,Evaluate Performance Conditions
+Evaluate Solid-State RM Performance,1,6,Evaluate Performance Conditions
+Investigate Alternative Screening Strategies,1,6,Evaluate Performance Conditions
+Investigate Defect Dynamics,3,6,Evaluate Performance Conditions
+Explore TiSO-REM Properties,1,6,Evaluate Performance Conditions
+Validate Performance with Alternatives,1,6,Evaluate Performance Conditions
+Validate In Silico Predictions,2,6,Evaluate Performance Conditions
+Investigate Transport Impairment,1,6,Evaluate Performance Conditions
+Investigate HER Activity Decline,1,6,Evaluate Performance Conditions
+Evaluate Field Challenges,1,6,Evaluate Performance Conditions
+Evaluate OER/HER solutions,1,6,Evaluate Performance Conditions
+Quantify Mo Weight Percentages,1,6,Evaluate Performance Conditions
+Characterize S-vacancies activity,1,6,Evaluate Performance Conditions
+Evaluate A(2.7)B-MOF-FeCo1.6 performance,1,6,Evaluate Performance Conditions
+Quantify Turnover Frequency,2,6,Evaluate Performance Conditions
+Integrate Characterization for Design,1,6,Evaluate Performance Conditions
+Integrate Solar-Splitting Electrode,1,7,Optimize Electrochemical Electrode Design
+Evaluate Electrochemical Conversion,1,7,Optimize Electrochemical Electrode Design
+Investigate Synergistic Electrode Design,1,7,Optimize Electrochemical Electrode Design
+Evaluate Alkaline Pseudocapacitive Materials,1,7,Optimize Electrochemical Electrode Design
+Develop Hydrogen Production Platforms,1,7,Optimize Electrochemical Electrode Design
+Evaluate Carbon Electrodes,1,7,Optimize Electrochemical Electrode Design
+Maintain Hydrogen Research,1,7,Optimize Electrochemical Electrode Design
+Maintain Electrochemical Activity,2,7,Optimize Electrochemical Electrode Design
+Investigate Energy Conversion Applications,1,7,Optimize Electrochemical Electrode Design
+Translate Electrode Findings,1,7,Optimize Electrochemical Electrode Design
+Quantify Electrochemical Activation Effects,1,7,Optimize Electrochemical Electrode Design
+Evaluate NiF2 Electrode,1,7,Optimize Electrochemical Electrode Design
+Optimize Water Electrolysis,210,7,Optimize Electrochemical Electrode Design
+Investigate Electrode Kinetics,3,7,Optimize Electrochemical Electrode Design
+Optimize Electrochemical Reconfiguration,1,7,Optimize Electrochemical Electrode Design
+Leverage Hydrogen Energy,1,7,Optimize Electrochemical Electrode Design
+Develop Electrochemical Activation Strategies,2,7,Optimize Electrochemical Electrode Design
+Develop Hierarchical Electrode Methods,1,7,Optimize Electrochemical Electrode Design
+Develop Integrated OER Electrodes,1,7,Optimize Electrochemical Electrode Design
+Develop Renewable Energy Systems,10,7,Optimize Electrochemical Electrode Design
+Develop Carbon-Paste Electrodes,1,7,Optimize Electrochemical Electrode Design
+Optimize Electro-oxidation Process,2,7,Optimize Electrochemical Electrode Design
+Develop Versatile Electrode Materials,1,7,Optimize Electrochemical Electrode Design
+Optimize Novel Electrode Designs,1,7,Optimize Electrochemical Electrode Design
+Optimize Electrolysis Activity,1,7,Optimize Electrochemical Electrode Design
+Improve Conductivity and Sites,3,7,Optimize Electrochemical Electrode Design
+Evaluate Energy Storage Potential,3,7,Optimize Electrochemical Electrode Design
+Optimize Electrode Channeling,1,7,Optimize Electrochemical Electrode Design
+Evaluate Opal Electrode Performance,1,7,Optimize Electrochemical Electrode Design
+Optimize Porous Electrode Fabrication,1,7,Optimize Electrochemical Electrode Design
+Optimize Electrochemical SOR-HER Integration,1,7,Optimize Electrochemical Electrode Design
+Evaluate Universal Electrode Performance,1,7,Optimize Electrochemical Electrode Design
+Optimize Electrochemistry Method,1,7,Optimize Electrochemical Electrode Design
+Optimize Electrospinning/Pyrolysis Process,1,7,Optimize Electrochemical Electrode Design
+Synthesize Low-Cost Electrodes,1,7,Optimize Electrochemical Electrode Design
+Validate Electrochemical Differentiation,1,7,Optimize Electrochemical Electrode Design
+Enhance Conductivity Through Growth,1,7,Optimize Electrochemical Electrode Design
+Investigate Electrolyte Stability,4,7,Optimize Electrochemical Electrode Design
+Mitigate Anode Corrosion,2,7,Optimize Electrochemical Electrode Design
+Develop In-situ Electrode Synthesis,1,7,Optimize Electrochemical Electrode Design
+Develop Synergistic Electrode Materials,3,7,Optimize Electrochemical Electrode Design
+Optimize Compression Conditions,2,8,Characterize Performance Parameters
+Optimize Materials for HER,2,8,Characterize Performance Parameters
+Optimize Energy Levels,1,8,Characterize Performance Parameters
+Investigate Efficiency Enhancement Mechanisms,1,8,Characterize Performance Parameters
+Develop Scalable Production Strategies,1,8,Characterize Performance Parameters
+Optimize Energy Utilization,1,8,Characterize Performance Parameters
+Optimize Support Material Performance,1,8,Characterize Performance Parameters
+Optimize Film Performance,5,8,Characterize Performance Parameters
+Optimize Industrial Application,1,8,Characterize Performance Parameters
+Optimize Doping Control,1,8,Characterize Performance Parameters
+Optimize Multi-Component Interfaces,1,8,Characterize Performance Parameters
+Optimize Ni Site Occupancy,1,8,Characterize Performance Parameters
+Overcome Stability Limitations,4,8,Characterize Performance Parameters
+Optimize HTPAs for Water Splitting,1,8,Characterize Performance Parameters
+Optimize Interface Integration,2,8,Characterize Performance Parameters
+Optimize NiFe@C Composition,1,8,Characterize Performance Parameters
+Optimize Ti3C2Tx for HER,1,8,Characterize Performance Parameters
+Develop Efficient Construction Methods,1,8,Characterize Performance Parameters
+Improve Active Site Performance,1,8,Characterize Performance Parameters
+Optimize Multiphase Interfaces,4,8,Characterize Performance Parameters
+Optimize Simulation Candidates,1,8,Characterize Performance Parameters
+Optimize Co2C Integration,1,8,Characterize Performance Parameters
+Improve CO2P Performance,1,8,Characterize Performance Parameters
+Optimize Co-Ni Ratio,1,8,Characterize Performance Parameters
+Optimize MoDoping Strategy,1,8,Characterize Performance Parameters
+Optimize MOR Reactions,1,8,Characterize Performance Parameters
+Optimize Channel Transport,1,8,Characterize Performance Parameters
+Reduce Overpotential in OER,7,8,Characterize Performance Parameters
+Optimize Hybrid Capacitor Performance,1,8,Characterize Performance Parameters
+Optimize Contactless Heating/Cooling,1,8,Characterize Performance Parameters
+Optimize Dipping Strategy,1,8,Characterize Performance Parameters
+Optimize Ni2-xMnxP Composition,1,8,Characterize Performance Parameters
+Optimize ORR/OER Strategies,1,8,Characterize Performance Parameters
+Minimize Ensemble Effects,1,8,Characterize Performance Parameters
+Optimize Carbon Networks,1,8,Characterize Performance Parameters
+Optimize TMP Structure,3,8,Characterize Performance Parameters
+Optimize Scale-Up Processes,3,8,Characterize Performance Parameters
+Optimize Binder Structures,1,8,Characterize Performance Parameters
+Optimize Proton Shuttle Design,1,8,Characterize Performance Parameters
+Optimize Active Site Coverage,1,8,Characterize Performance Parameters
+Optimize UVO for HER,1,8,Characterize Performance Parameters
+Explore Biomass Precursors,1,9,Develop Novel Synthesis Methods
+Optimize In-Situ Synthesis,6,9,Develop Novel Synthesis Methods
+Optimize IGC Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Hierarchical Microtube Synthesis,1,9,Develop Novel Synthesis Methods
+Develop Synergistic Material Synthesis,2,9,Develop Novel Synthesis Methods
+Optimize Mo2C/NKAB Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Lignin Cleavage,1,9,Develop Novel Synthesis Methods
+Explore POM-MOF Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Nano-FeOOH Synthesis,1,9,Develop Novel Synthesis Methods
+Synthesize Novel Covalent Frameworks,1,9,Develop Novel Synthesis Methods
+Synthesize Microcube Growth,1,9,Develop Novel Synthesis Methods
+Optimize Microwave Synthesis Methods,10,9,Develop Novel Synthesis Methods
+Develop Doping-Assisted Routes,1,9,Develop Novel Synthesis Methods
+Scale-Up Carbonization Process,1,9,Develop Novel Synthesis Methods
+Optimize PCMOD Synthesis,1,9,Develop Novel Synthesis Methods
+Synthesize Compositional Mixed Oxides,1,9,Develop Novel Synthesis Methods
+Develop Phosphorus-Doped Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Combustion Synthesis,7,9,Develop Novel Synthesis Methods
+Purify Stable Compositions,1,9,Develop Novel Synthesis Methods
+Optimize Phase-Control Synthesis,1,9,Develop Novel Synthesis Methods
+Understand Synthesis Protocols,1,9,Develop Novel Synthesis Methods
+Synthesize FexCo1-xS2 Samples,1,9,Develop Novel Synthesis Methods
+Optimize Anodic Hydrazine Reaction,1,9,Develop Novel Synthesis Methods
+Optimize Electron Beam Synthesis,1,9,Develop Novel Synthesis Methods
+Develop Novel Cocatalysts,4,9,Develop Novel Synthesis Methods
+Develop Oxidation-Etching Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Composite Modifier Synthesis,1,9,Develop Novel Synthesis Methods
+Develop Carbon Neutral Conversion,1,9,Develop Novel Synthesis Methods
+Develop Synthetic Microsphere Routes,1,9,Develop Novel Synthesis Methods
+Optimize Post-Synthesis Treatments,1,9,Develop Novel Synthesis Methods
+Optimize Solvent-Free Synthesis,1,9,Develop Novel Synthesis Methods
+Explore Composite Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Chiral NiO Synthesis,1,9,Develop Novel Synthesis Methods
+Develop Bifunctional MOF Derivatives,1,9,Develop Novel Synthesis Methods
+Optimize HEMo@900 Synthesis,1,9,Develop Novel Synthesis Methods
+Develop ZIF-based Selenide Synthesis,1,9,Develop Novel Synthesis Methods
+Synthesize MoS2 QDs,1,9,Develop Novel Synthesis Methods
+Synthesize Ligand-Defect Materials,1,9,Develop Novel Synthesis Methods
+Optimize 3D Material Synthesis,1,9,Develop Novel Synthesis Methods
+Synthesize Derivative Structures,1,9,Develop Novel Synthesis Methods
+Optimize CBD Synthesis,1,9,Develop Novel Synthesis Methods
+Optimize Air-Annealing Method,1,10,Optimize Transition Metal Oxides
+Optimize PLA Oxidation for OER,1,10,Optimize Transition Metal Oxides
+Optimize Heterointerface Chemistry,1,10,Optimize Transition Metal Oxides
+Optimize Low-Dimensional BP Materials,1,10,Optimize Transition Metal Oxides
+Optimize Doping Efficiency,1,10,Optimize Transition Metal Oxides
+Optimize Bifunctional Perovskite Performance,1,10,Optimize Transition Metal Oxides
+Optimize MOF Material Design,1,10,Optimize Transition Metal Oxides
+Optimize Low-Temperature Fabrication,1,10,Optimize Transition Metal Oxides
+Optimize Substrate Coupling,1,10,Optimize Transition Metal Oxides
+Optimize Composite Deposition Method,1,10,Optimize Transition Metal Oxides
+Optimize CCM Fabrication,1,10,Optimize Transition Metal Oxides
+Optimize Carbon Coating Method,1,10,Optimize Transition Metal Oxides
+Optimize Anionic Double Doping,1,10,Optimize Transition Metal Oxides
+Optimize Co Doping Method,3,10,Optimize Transition Metal Oxides
+Optimize NEZ-3 Heterostructure,1,10,Optimize Transition Metal Oxides
+Optimize Co0.54Fe0.46OOH Structure,1,10,Optimize Transition Metal Oxides
+Optimize Metal Source Ratios,2,10,Optimize Transition Metal Oxides
+Optimize Nitride Properties,1,10,Optimize Transition Metal Oxides
+Optimize Mo2C-CNT Composites,1,10,Optimize Transition Metal Oxides
+Optimize Vapor-Solid Reaction,1,10,Optimize Transition Metal Oxides
+Optimize Plasma Processing Conditions,1,10,Optimize Transition Metal Oxides
+Optimize LSMO surface structure,1,10,Optimize Transition Metal Oxides
+Optimize MOF/NF Composites,1,10,Optimize Transition Metal Oxides
+Optimize Electronic Structure Regulation,1,10,Optimize Transition Metal Oxides
+Optimize Hierarchical Pore Structures,3,10,Optimize Transition Metal Oxides
+Optimize Layered Intermediate Formation,1,10,Optimize Transition Metal Oxides
+Optimize Fe-based Material Performance,1,10,Optimize Transition Metal Oxides
+Optimize LDH Doping Strategies,1,10,Optimize Transition Metal Oxides
+Optimize Nickel Foam Performance,2,10,Optimize Transition Metal Oxides
+Optimize RuO2-P-rGO Material,1,10,Optimize Transition Metal Oxides
+Optimize Alloy Structures,4,10,Optimize Transition Metal Oxides
+Optimize Plasma Parameters,9,10,Optimize Transition Metal Oxides
+Optimize CeO2 @INF Anode,1,10,Optimize Transition Metal Oxides
+Optimize MnPS3 Composition,1,10,Optimize Transition Metal Oxides
+Optimize Remote Metal Sites,1,10,Optimize Transition Metal Oxides
+Optimize Full-Cell Water Splitting,1,10,Optimize Transition Metal Oxides
+Optimize Perovskite Fabrication,1,10,Optimize Transition Metal Oxides
+Optimize Hydrothermal Fabrication Process,7,10,Optimize Transition Metal Oxides
+Optimize Tubular Sphere Design,1,10,Optimize Transition Metal Oxides
+Optimize MoS2 Composite Growth,1,10,Optimize Transition Metal Oxides
+Optimize Interface Electron Redistribution,1,10,Optimize Transition Metal Oxides
+Characterize TMD Nanocone Arrays,1,11,Optimize Nanomaterial Functionality
+Optimize Nanocarbon Frameworks,1,11,Optimize Nanomaterial Functionality
+Characterize Nanosheet Framework Performance,1,11,Optimize Nanomaterial Functionality
+Characterize Nanoporous Morphology,1,11,Optimize Nanomaterial Functionality
+Characterize Nanoflake Growth,2,11,Optimize Nanomaterial Functionality
+Investigate Nanotube Induction Mechanisms,1,11,Optimize Nanomaterial Functionality
+Develop Heterostructured Nanomaterials Synthesis,1,11,Optimize Nanomaterial Functionality
+Optimize Nanowire Structure,15,11,Optimize Nanomaterial Functionality
+Characterize Nanoparticle Composites,1,11,Optimize Nanomaterial Functionality
+Synthesize Modified Nanosheets,1,11,Optimize Nanomaterial Functionality
+Optimize Nano-Architectures for HNBs,1,11,Optimize Nanomaterial Functionality
+Optimize 3D nanocomposite performance,1,11,Optimize Nanomaterial Functionality
+Optimize Fluorine-Doped Nanostructures,1,11,Optimize Nanomaterial Functionality
+Develop Nanostructured Film Methods,1,11,Optimize Nanomaterial Functionality
+Optimize Nanoflake Array Performance,1,11,Optimize Nanomaterial Functionality
+Characterize Nanoparticle-Fiber Interactions,1,11,Optimize Nanomaterial Functionality
+Optimize Nanomaterial Growth,3,11,Optimize Nanomaterial Functionality
+Optimize Nanopore Etching-Aging Process,1,11,Optimize Nanomaterial Functionality
+Characterize Nanofiber Transformations,1,11,Optimize Nanomaterial Functionality
+Correlate Nanoparticle and CNF Formation,1,11,Optimize Nanomaterial Functionality
+Evaluate Nanostructured Materials,3,11,Optimize Nanomaterial Functionality
+Develop Nanoparticle Decoration,1,11,Optimize Nanomaterial Functionality
+Synthesize Co3O4 Nano-Microspheres,1,11,Optimize Nanomaterial Functionality
+Explore Multi-metallic Nanostructures,1,11,Optimize Nanomaterial Functionality
+Fabricate Novel Junction Structures,1,11,Optimize Nanomaterial Functionality
+Optimize Nanoflower Heterostructures,1,11,Optimize Nanomaterial Functionality
+Optimize Nanoparticle Coupling,1,11,Optimize Nanomaterial Functionality
+Optimize Nanoscale Morphology Synthesis,1,11,Optimize Nanomaterial Functionality
+Characterize Nanoarray Properties,2,11,Optimize Nanomaterial Functionality
+Synthesize Nanostructure Films,1,11,Optimize Nanomaterial Functionality
+Scale-Up Nanowall Synthesis,1,11,Optimize Nanomaterial Functionality
+Characterize Amorphous Nanostructure,1,11,Optimize Nanomaterial Functionality
+Optimize Nanosponges for Catalysis,1,11,Optimize Nanomaterial Functionality
+Optimize Iridium Nanowire Structures,1,11,Optimize Nanomaterial Functionality
+Optimize Nanoparticle Microstructure,1,11,Optimize Nanomaterial Functionality
+Develop Nanomaterial Growth Methods,1,11,Optimize Nanomaterial Functionality
+Optimize Nanorods for Hydrogen,1,11,Optimize Nanomaterial Functionality
+Develop Novel Nanostructured Materials,2,11,Optimize Nanomaterial Functionality
+Optimize Carbon Nanotube Morphology,1,11,Optimize Nanomaterial Functionality
+Develop Novel Nanosheets,4,11,Optimize Nanomaterial Functionality
+Fabricate Nanofiber Structures,1,11,Optimize Nanomaterial Functionality
+Understand Inert Carbon,1,4,Characterize Metal Doping Effects
+Evaluate Carbon Quantum Dot Performance,1,11,Optimize Nanomaterial Functionality
+Stabilize NiMo Catalysts,1,5,Optimize Catalytic Systems
+Optimize Pt nanostructure design,1,11,Optimize Nanomaterial Functionality
+Improve CAWE Efficiency,1,8,Characterize Performance Parameters
+Characterize Polarized Interphase,1,4,Characterize Metal Doping Effects
+Explore Alternative Fabrication Methods,2,2,Characterize Novel Materials
+Optimize Catalyst Heterojunctions,2,5,Optimize Catalytic Systems
