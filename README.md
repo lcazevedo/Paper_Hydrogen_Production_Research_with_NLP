@@ -38,14 +38,14 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `create_columns_JNIF_score_log_score_sqrt.py` — Relevance Index components
 
 ### `validation/` — reproducibility checks and audit samples
-* `2026_09_25_challenge_denominator_funnel.py` — reproduces the sentence-level denominator (categorized vs. "Uncategorized") behind Figure 6
-* `amostra_500_audited.xlsx`, `2026_09_25_audit_500_accuracy_F1_score_confusion_matrix.py` — 500-sentence manual audit of the challenge classification (accuracy/F1/confusion matrix)
-* `2026_09_25_research_scope_category_validation.py` — category-specific precision/recall for "Research Scope, Novelty, and Generalization"
-* `2026_09_25_setfit_group_aware_validation.py`, `setfit_group_split_manifest.csv` — topic-held-out `GroupShuffleSplit` validation of the SetFit filter (manifest is text-free; the script needs the non-deposited gold-standard text to train)
-* `2026_09_25_evoc_clustering_sensitivity_analysis.py` — topic-model stability under `noise_level` and granularity perturbations (needs the non-deposited precomputed embeddings)
+* `challenge_denominator_funnel.py` — reproduces the sentence-level denominator (categorized vs. "Uncategorized") behind Figure 6
+* `amostra_500_audited.xlsx`, `audit_500_accuracy_F1_score_confusion_matrix.py` — 500-sentence manual audit of the challenge classification (accuracy/F1/confusion matrix)
+* `research_scope_category_validation.py` — category-specific precision/recall for "Research Scope, Novelty, and Generalization"
+* `setfit_group_aware_validation.py`, `setfit_group_split_manifest.csv` — topic-held-out `GroupShuffleSplit` validation of the SetFit filter (manifest is text-free; the script needs the non-deposited gold-standard text to train)
+* `evoc_clustering_sensitivity_analysis.py` — topic-model stability under `noise_level` and granularity perturbations (needs the non-deposited precomputed embeddings)
 * `challenges_classified_v3_optimized.xlsx`, `controversies_label_classified_sample500.csv`, `directions_label_classified_sample500.csv` — label→category mapping samples used by `pipeline/`
-* `2026_09_25_challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
-* `audit_100_documents_labels_only.csv`, `2026_09_25_audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
+* `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
+* `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
 
 ### `analysis/` — figures and tables
 * `charts_and_tables_for_section_4_14.ipynb`, `charts_and_tables_general.ipynb`

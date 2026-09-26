@@ -6,7 +6,7 @@ the deposited `clustering_EVOC.ipynb` comments describe saving via
 
 Also closes a discrepancy raised in the audit: rerunning EVoC from scratch on
 embs_pred.pkl gives a 20-topic layer closest to the paper's target of 25 (see
-2026_09_25_evoc_clustering_sensitivity_analysis.py); this script instead loads the
+evoc_clustering_sensitivity_analysis.py); this script instead loads the
 ORIGINAL fitted model directly, removing any need to match library version or seed.
 
 No non-deposited files are required: `topic_assignment_original_model.csv`
