@@ -91,9 +91,9 @@ independently checkable.
 | Challenge-category denominator | **Fully reproduced** from the already-public `final_corpus_data.csv`. | `validation/challenge_denominator_funnel.py` |
 | "Research Scope" category sample and precision/recall | **Fully reproduced**, no new data needed. | `validation/research_scope_category_validation.py` |
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
-| Seed-set recall | **Reproduced**, closely matches independent recomputation once the seed file's DOI conflicts are resolved (473 distinct seeds, matching exactly; Experimental 257/344 retrieved = 74.7% and 240/344 retained = 69.8%, exact match; Theoretical 72/129 retrieved = 55.8% vs. 73/129 = 56.6%, 1-document residual difference). | `validation/resolve_seed_doi_conflicts.py`, `validation/seed_recall_analysis.py`, `data/seed_papers_resolved.csv` |
+| Seed-set recall | **Reproduced**, with a data-quality fix applied first (see notes below): the raw seed file has 476 rows but only 473 distinct documents. After resolving this: 473 distinct seeds (344 experimental, 129 theoretical); Experimental 257/344 (74.7%) retrieved, 240/344 (69.8%) retained; Theoretical 72/129 (55.8%) retrieved, 68/129 (52.7%) retained. | `validation/resolve_seed_doi_conflicts.py`, `validation/seed_recall_analysis.py`, `data/seed_papers_resolved.csv` |
 | Relevance-filter input consistency (training vs. deployment) | **Resolved.** The SI described the wrong input for global inference; corrected to describe the input actually deployed, with a validation check confirming equivalent performance (0.9153 vs. 0.9104 accuracy on the same held-out test set). | `validation/abstract_vs_title_abstract_inference.py` |
-| Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. An independently-raised concern — the index sums a dimensional quantity (citations per year) with two dimensionless ones, so its ranking need not be invariant to the citation-rate time unit — is empirically smaller than initially estimated: switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking (only the citation-rate term, 50% of the weight, is unit-dependent; decile membership and log topic size are not). A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
+| Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. The index sums a dimensional quantity (citations per year) with two dimensionless ones (top-decile membership, log topic size), so nothing guarantees its ranking is invariant to the citation-rate time unit; we tested this directly. Switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking: only the citation-rate term (50% of the weight) is unit-dependent, since decile membership is thresholded on raw citation counts, not a rate, and log topic size does not involve citations at all. A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
 
 ## Notes on specific artifacts
 
@@ -110,6 +110,32 @@ Regression (hyperparameters chosen by 5-fold `GridSearchCV`) trained on the depo
 label→category dictionary (`challenges_classified_v3_optimized.xlsx`). 5-fold CV
 accuracy 0.922 (unweighted per unique label) / 0.969 (weighted by frequency). This is
 documented explicitly as a reconstruction, not recovered code.
+
+**Seed-file DOI resolution.** The raw seed file (`data/seed_papers_extracted_v2.csv`)
+has 476 rows carrying two DOI fields per document, extracted two different ways
+(from the filename, and from the PDF's full text via a DOI-lookup tool). These
+476 rows correspond to only 473 distinct documents: one filename typo creates a
+near-duplicate pair, and 10 rows have the two DOI fields disagreeing. Each seed PDF
+in this collection is deliberately named after its own DOI, so the filename-derived
+DOI is treated as authoritative, with the PDF-text-derived DOI used only as a
+fallback for the one row where the filename itself has a typo. This rule was checked
+against public Crossref metadata (`api.crossref.org/works/{doi}`) for all 10
+disagreements: in one case the PDF-text-derived DOI resolves to the journal issue's
+"Preface" rather than to an article — confirming that full-text DOI lookup can pick
+up an unrelated DOI mentioned elsewhere in the same PDF — while the corresponding
+filename-derived DOI resolves to a genuine, topically-relevant article. Applying
+this rule and de-duplicating gives exactly 473 distinct seed documents (344
+experimental, 129 theoretical). Script: `validation/resolve_seed_doi_conflicts.py`;
+output: `data/seed_papers_resolved.csv` (doi, filename, category — no title/abstract
+text).
+
+**Relevance Index: computed-but-unused term.** The Relevance Index computation also
+derives a per-document z-score and a year-level mean/standard deviation, but these
+do not appear in the composite index formula (0.5·mean_CPY + 0.3·prop_top10 +
+0.2·log(1+n) — see `validation/relevance_index_reproduction_and_sensitivity.py`).
+This is intentional and not a bug in the reproduction: the reproduced ranking
+matches Table 1 exactly using only the three terms in the formula, without the
+z-score.
 
 **Relevance-filter input consistency.** Section S-3.11 described the global-inference
 input as title+abstract, whereas the deployed classifier used the abstract field
