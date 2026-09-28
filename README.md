@@ -26,7 +26,8 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 ### `data/` — corpus definition
 * `final_corpus_IDs.csv` — DOIs of the 32,114 documents in the final corpus
 * `initial_corpus_IDs.csv` — DOIs of the 40,467 documents retrieved before relevance filtering
-* `seed_papers_extracted_v2.csv` — the 476-document seed set used to build the search query
+* `seed_papers_extracted_v2.csv` — the 476-row seed set used to build the search query, as originally exported (has 1 duplicate pair and 10 rows with a filename/PDF-text DOI disagreement -- see `validation/resolve_seed_doi_conflicts.py`)
+* `seed_papers_resolved.csv` — the same set de-duplicated and DOI-resolved to 473 distinct documents (344 experimental, 129 theoretical)
 * `final_corpus_data.csv.zip` — per-document topic and challenge/direction/controversy group assignments
 
 ### `pipeline/` — corpus and label construction
@@ -51,6 +52,8 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
 * `reproduce_table1_from_original_model.py` — reproduces Table 1's topic sizes from `pipeline/model_pred/`
 * `relevance_index_reproduction_and_sensitivity.py` — reproduces the Relevance Index ranking (Table 1) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
+* `resolve_seed_doi_conflicts.py` — de-duplicates and resolves DOI conflicts in the raw seed file, producing `data/seed_papers_resolved.csv`
+* `seed_recall_analysis.py` — reports how many of the 473 resolved seed documents were retrieved by the search query and retained in the final corpus, by study type
 
 ### `analysis/` — figures and tables
 * `charts_and_tables_for_section_4_14.ipynb`, `charts_and_tables_general.ipynb`
