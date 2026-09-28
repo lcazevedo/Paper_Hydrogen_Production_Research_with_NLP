@@ -63,4 +63,4 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 The custom code developed for this project is intended to be released under an open-source license (LICENSE file pending — check back or contact the corresponding author). Feel free to use and adapt it, provided the original article is properly cited.
 
 **Article Citation:**
-> Azevedo, L. C., et al. (Year). *Mapping Electrochemical Hydrogen Production Research with NLP: Automated Relevance Filtering, Transformer-Based Topic Modeling, and Scientometric Trends*. Journal Name. DOI: [Link to the DOI of your paper, when published]
+> Pedro Ivo R. Moraes, et al. (Year). *Research Trends, Gaps, and Emerging Directions in Electrocatalyst Materials for Water Electrolysis*. Journal Name. DOI: [Link to the DOI of your paper, when published]
