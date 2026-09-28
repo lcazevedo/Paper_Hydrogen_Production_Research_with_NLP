@@ -38,6 +38,11 @@ python3 audit_100_documents_study_type.py
 
 python3 reproduce_table1_from_original_model.py
 # -> reproduces Table 1's topic sizes from the original BERTopic/EVoC model
+
+python3 relevance_index_reproduction_and_sensitivity.py
+# -> reproduces Table 1's Relevance Index ranking exactly, then reports the
+#    citation-rate-unit sensitivity check (rho=0.984) and a unit-invariant
+#    z-scored alternative (rho=0.943 vs. the published ranking)
 ```
 
 The following also reproduce exactly but need the deposited checkpoint
@@ -88,6 +93,7 @@ independently checkable.
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
 | Seed-set recall | **Reproduced**, closely matches independent recomputation (473 distinct seeds; Experimental 257/344 retrieved = 74.7%, exact match; Theoretical 71/129 retrieved = 55.0% vs. 56.6%, small discrepancy likely from DOI-matching edge cases). | `validation/seed_recall_analysis.py` |
 | Relevance-filter input consistency (training vs. deployment) | **Resolved.** The SI described the wrong input for global inference; corrected to describe the input actually deployed, with a validation check confirming equivalent performance (0.9153 vs. 0.9104 accuracy on the same held-out test set). | `validation/abstract_vs_title_abstract_inference.py` |
+| Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. An independently-raised concern — the index sums a dimensional quantity (citations per year) with two dimensionless ones, so its ranking need not be invariant to the citation-rate time unit — is empirically smaller than initially estimated: switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking (only the citation-rate term, 50% of the weight, is unit-dependent; decile membership and log topic size are not). A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
 
 ## Notes on specific artifacts
 
