@@ -1,20 +1,25 @@
 """
 Seed-set recall analysis (audit issue #5; correction plan A6).
 
-Checks how many of the 476 expert-nominated seed documents (used to build the
-Boolean search query) were actually retrieved by that query, and how many survived
-relevance filtering into the final corpus -- broken down by study type. No new data
-needed: all three inputs are already in data/.
+Checks how many of the 473 distinct expert-nominated seed documents (used to build
+the Boolean search query) were actually retrieved by that query, and how many
+survived relevance filtering into the final corpus -- broken down by study type.
+No new data needed: all inputs are already in data/.
+
+Uses data/seed_papers_resolved.csv (see resolve_seed_doi_conflicts.py, audit issue
+#26), which de-duplicates the raw 476-row seed file down to 473 distinct documents
+and resolves 10 rows where the filename-derived DOI disagreed with the
+PDF-text-extracted DOI. Run resolve_seed_doi_conflicts.py first if that file is
+missing.
 """
 import pandas as pd
 
-SEEDS_CSV = "../data/seed_papers_extracted_v2.csv"
+SEEDS_CSV = "../data/seed_papers_resolved.csv"
 INITIAL_IDS_CSV = "../data/initial_corpus_IDs.csv"      # 40,467 retrieved records
 FINAL_IDS_CSV = "../data/final_corpus_IDs.csv"          # 32,114 final corpus records
 
 seeds = pd.read_csv(SEEDS_CSV)
-seeds["doi_norm"] = seeds["doi_from_filename"].astype(str).str.lower().str.strip()
-seeds = seeds.drop_duplicates(subset=["doi_norm"])
+seeds["doi_norm"] = seeds["doi"].astype(str).str.lower().str.strip()
 print(f"Distinct seed DOIs: {len(seeds)}")
 print(seeds["category"].value_counts())
 

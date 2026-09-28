@@ -26,7 +26,8 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 ### `data/` — corpus definition
 * `final_corpus_IDs.csv` — DOIs of the 32,114 documents in the final corpus
 * `initial_corpus_IDs.csv` — DOIs of the 40,467 documents retrieved before relevance filtering
-* `seed_papers_extracted_v2.csv` — the 476-document seed set used to build the search query
+* `seed_papers_extracted_v2.csv` — the 476-row seed set used to build the search query, as originally exported (has 1 duplicate pair and 10 rows with a filename/PDF-text DOI disagreement -- see `validation/resolve_seed_doi_conflicts.py`)
+* `seed_papers_resolved.csv` — the same set de-duplicated and DOI-resolved to 473 distinct documents (344 experimental, 129 theoretical)
 * `final_corpus_data.csv.zip` — per-document topic and challenge/direction/controversy group assignments
 
 ### `pipeline/` — corpus and label construction
@@ -36,6 +37,9 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `create_classes_for_research_controversies_transformers_part_1/2/3.py`, `create_classes_for_research_directions sentence_transformers_part_1/2/3.py` — embedding + clustering + LLM naming of extracted labels into macro-categories
 * `6_group_challenges.py` — deterministic label→category merge for the challenge pipeline
 * `create_columns_JNIF_score_log_score_sqrt.py` — Relevance Index components
+* `model_pred/` — the original saved topic model (BERTopic/EVōC: per-document topic assignment and topic centroid embeddings, no text)
+* `topic_assignment_original_model.csv` — doi + unique_id + topic_id + topic_name derived from `model_pred/` (no text)
+* `relevance_index_input_data.csv` — doi + year + citation count + document type + topic name for all 32,114 documents (no text), input to the Relevance Index reproduction below
 
 ### `validation/` — reproducibility checks and audit samples
 * `challenge_denominator_funnel.py` — reproduces the sentence-level denominator (categorized vs. "Uncategorized") behind Figure 6
@@ -46,6 +50,10 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `challenges_classified_v3_optimized.xlsx`, `controversies_label_classified_sample500.csv`, `directions_label_classified_sample500.csv` — label→category mapping samples used by `pipeline/`
 * `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
 * `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
+* `reproduce_table1_from_original_model.py` — reproduces Table 1's topic sizes from `pipeline/model_pred/`
+* `relevance_index_reproduction_and_sensitivity.py` — reproduces the Relevance Index ranking (Table 1) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
+* `resolve_seed_doi_conflicts.py` — de-duplicates and resolves DOI conflicts in the raw seed file, producing `data/seed_papers_resolved.csv`
+* `seed_recall_analysis.py` — reports how many of the 473 resolved seed documents were retrieved by the search query and retained in the final corpus, by study type
 
 ### `analysis/` — figures and tables
 * `charts_and_tables_for_section_4_14.ipynb`, `charts_and_tables_general.ipynb`
