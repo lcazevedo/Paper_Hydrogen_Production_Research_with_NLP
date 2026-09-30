@@ -14,8 +14,9 @@ to scale challenge classification beyond a curated label dictionary — could no
 recovered; a documented **reconstruction** with an equivalent architecture is
 deposited instead and clearly marked as such, alongside the deterministic grouping
 step that was recovered. We also identified and resolved an input-consistency issue
-in the relevance classifier (documented below). One small, unresolved numeric
-discrepancy is listed below rather than left for a reader to find.
+in the relevance classifier, and a gold-standard-size discrepancy that turned out to
+be a target-vs-realized split-size artifact rather than a data mismatch (both
+documented below).
 
 ## Quick verification
 
@@ -64,15 +65,6 @@ python3 abstract_vs_title_abstract_inference.py
 # -> abstract-only:  accuracy 0.9104, [[262,30],[60,652]]  (0.5-pp difference)
 ```
 
-## Known open discrepancy
-
-**Gold-standard size.** The SI states 3,178 labelled records (1,809 relevant / 1,369
-not relevant). The `rel_nrel.csv` file used for validation here has 3,973 records
-(2,284 relevant / 1,689 not relevant). The `GroupShuffleSplit` on the 3,973-record
-file reproduces the published test-set composition exactly (n=1,004; 712/292), so
-this looks like a stale count in the SI text rather than a different underlying file
-— not yet reconciled with the corresponding author.
-
 ## Why some inputs are not in this repository
 
 Web of Science (Clarivate) title/abstract text cannot be redistributed under the
@@ -98,6 +90,7 @@ independently checkable.
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
 | Seed-set recall | **Reproduced**, with a data-quality fix applied first (see notes below): the raw seed file has 476 rows but only 473 distinct documents. After resolving this: 473 distinct seeds (344 experimental, 129 theoretical); Experimental 257/344 (74.7%) retrieved, 240/344 (69.8%) retained; Theoretical 72/129 (55.8%) retrieved, 68/129 (52.7%) retained. | `validation/resolve_seed_doi_conflicts.py`, `validation/seed_recall_analysis.py`, `data/seed_papers_resolved.csv` |
 | Relevance-filter input consistency (training vs. deployment) | **Resolved.** The SI described the wrong input for global inference; corrected to describe the input actually deployed, with a validation check confirming equivalent performance (0.9153 vs. 0.9104 accuracy on the same held-out test set). | `validation/abstract_vs_title_abstract_inference.py` |
+| Gold-standard size (SI text vs. deposited file) | **Resolved.** The SI's stated size (3,178 records) is the *target* size of the `GroupShuffleSplit`'s 80% training partition (`test_size=0.2`, applied to the full 3,973-record gold standard: 0.8×3,973=3,178.4), not a different dataset. Because the split must keep each preliminary cluster whole, the realized partition sizes differ from the 80/20 target — the deposited split (`random_state=42`) comes out to 2,969/1,004 (74.7%/25.3%) rather than ≈3,178/795. Confirmed with the corresponding author. | `validation/setfit_group_aware_validation.py` |
 | Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. The index sums a dimensional quantity (citations per year) with two dimensionless ones (top-decile membership, log topic size), so nothing guarantees its ranking is invariant to the citation-rate time unit; we tested this directly. Switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking: only the citation-rate term (50% of the weight) is unit-dependent, since decile membership is thresholded on raw citation counts, not a rate, and log topic size does not involve citations at all. A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
 | Topic-level growth-model selection (2014-2024) | **Fully reproduced.** Refitting all 25 topics' annual counts (Linear/Exponential/Logistic/Gompertz, Poisson/NB2, selected by corrected AIC) reproduces the SI's selected model, Akaike weight, and AICc for every topic. Two of the SI's fitted-parameter table cells have a typo (a missing leading digit in the "A" column, see notes below); everything else, including the model-selection table, is consistent. | `pipeline/relevance_index_input_data.csv`, `validation/growth_model_fitting.py`, `validation/reproduce_growth_model_fitting.py` |
 
@@ -160,6 +153,21 @@ Note that one of these two topics has only 8 non-zero years of data for a 3-para
 curve, so its exact asymptote is not tightly identified — independent refits land on
 different large values of A with similarly good AICc; the other topic's asymptote
 reproduces to the exact digit, since it has substantially more data.
+
+**Gold-standard size: split target vs. realized size.** The SI states a
+gold-standard size of 3,178 labelled records (1,809 relevant / 1,369 not relevant);
+`rel_nrel.csv`, used for validation here, has 3,973 records (2,284 relevant / 1,689
+not relevant) in total. These are not two different underlying datasets: the
+relevance-filter validation calls `GroupShuffleSplit(test_size=0.2, random_state=42)`
+on the full 3,973-record file, targeting an 80/20 train/test split — 80% of 3,973 is
+3,178.4, matching the SI's number almost exactly. `GroupShuffleSplit` keeps every
+preliminary cluster (the grouping unit) entirely on one side of the split, so it can
+only approximate the requested ratio; the actual realized split deposited here comes
+out to 2,969 train / 1,004 test (74.7%/25.3%) rather than the targeted ≈3,178/795.
+The SI's number reflects the split's intended target (from the same procedure, at
+the same 0.2 test-size setting), not a mismatch between files. This does not affect
+the reported classifier performance, which is evaluated on the realized (deposited)
+held-out test set.
 
 **Relevance-filter input consistency.** Section S-3.11 described the global-inference
 input as title+abstract, whereas the deployed classifier used the abstract field
