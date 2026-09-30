@@ -54,6 +54,8 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `relevance_index_reproduction_and_sensitivity.py` — reproduces the Relevance Index ranking (Table 1) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
 * `resolve_seed_doi_conflicts.py` — de-duplicates and resolves DOI conflicts in the raw seed file, producing `data/seed_papers_resolved.csv`
 * `seed_recall_analysis.py` — reports how many of the 473 resolved seed documents were retrieved by the search query and retained in the final corpus, by study type
+* `growth_model_fitting.py` — growth-model fitting library (Linear/Exponential/Plateau/Logistic/Gompertz under Poisson/NB2, AICc model selection)
+* `reproduce_growth_model_fitting.py` — reproduces the SI's topic-level growth-model selection (best model, Akaike weight, AICc) from `pipeline/relevance_index_input_data.csv`
 
 ### `analysis/` — figures and tables
 * `charts_and_tables_for_section_4_14.ipynb`, `charts_and_tables_general.ipynb`

@@ -43,6 +43,11 @@ python3 relevance_index_reproduction_and_sensitivity.py
 # -> reproduces Table 1's Relevance Index ranking exactly, then reports the
 #    citation-rate-unit sensitivity check (rho=0.984) and a unit-invariant
 #    z-scored alternative (rho=0.943 vs. the published ranking)
+
+python3 reproduce_growth_model_fitting.py
+# -> refits all 25 topics' 2014-2024 growth models (Linear/Exponential/Logistic/
+#    Gompertz, Poisson/NB2, selected by AICc) and reproduces the SI's selected
+#    model, Akaike weight, and AICc for every topic
 ```
 
 The following also reproduce exactly but need the deposited checkpoint
@@ -94,6 +99,7 @@ independently checkable.
 | Seed-set recall | **Reproduced**, with a data-quality fix applied first (see notes below): the raw seed file has 476 rows but only 473 distinct documents. After resolving this: 473 distinct seeds (344 experimental, 129 theoretical); Experimental 257/344 (74.7%) retrieved, 240/344 (69.8%) retained; Theoretical 72/129 (55.8%) retrieved, 68/129 (52.7%) retained. | `validation/resolve_seed_doi_conflicts.py`, `validation/seed_recall_analysis.py`, `data/seed_papers_resolved.csv` |
 | Relevance-filter input consistency (training vs. deployment) | **Resolved.** The SI described the wrong input for global inference; corrected to describe the input actually deployed, with a validation check confirming equivalent performance (0.9153 vs. 0.9104 accuracy on the same held-out test set). | `validation/abstract_vs_title_abstract_inference.py` |
 | Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. The index sums a dimensional quantity (citations per year) with two dimensionless ones (top-decile membership, log topic size), so nothing guarantees its ranking is invariant to the citation-rate time unit; we tested this directly. Switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking: only the citation-rate term (50% of the weight) is unit-dependent, since decile membership is thresholded on raw citation counts, not a rate, and log topic size does not involve citations at all. A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
+| Topic-level growth-model selection (2014-2024) | **Fully reproduced.** Refitting all 25 topics' annual counts (Linear/Exponential/Logistic/Gompertz, Poisson/NB2, selected by corrected AIC) reproduces the SI's selected model, Akaike weight, and AICc for every topic. Two of the SI's fitted-parameter table cells have a typo (a missing leading digit in the "A" column, see notes below); everything else, including the model-selection table, is consistent. | `pipeline/relevance_index_input_data.csv`, `validation/growth_model_fitting.py`, `validation/reproduce_growth_model_fitting.py` |
 
 ## Notes on specific artifacts
 
@@ -136,6 +142,24 @@ do not appear in the composite index formula (0.5·mean_CPY + 0.3·prop_top10 +
 This is intentional and not a bug in the reproduction: the reproduced ranking
 matches Table 1 exactly using only the three terms in the formula, without the
 z-score.
+
+**Growth-model fitting parameters: two SI table cells missing a leading digit.**
+Refitting the 2014-2024 annual counts for all 25 topics reproduces the model-selection
+table (best model, Akaike weight, AICc) exactly for every topic. Cross-checking against
+the SI's separate table of fitted parameters (A/L, k, x0, alpha) shows 23 of 25 rows
+match exactly; two do not: the SI table's asymptote column reads 530.505 for one topic
+and 209.200 for another, while a refit that reproduces that same table's own AICc for
+those two rows requires 8530.505 and 2209.200, respectively — i.e., a leading digit
+appears to be missing from the printed values, not a modeling error (the AICc, Akaike
+weight, and all other columns are internally consistent with the larger value in each
+case). The growth rate and inflection-time columns for both rows are unaffected. Script:
+`validation/reproduce_growth_model_fitting.py`, using the growth-model library in
+`validation/growth_model_fitting.py`; input data:
+`pipeline/relevance_index_input_data.csv` (aggregated to per-topic annual counts).
+Note that one of these two topics has only 8 non-zero years of data for a 3-parameter
+curve, so its exact asymptote is not tightly identified — independent refits land on
+different large values of A with similarly good AICc; the other topic's asymptote
+reproduces to the exact digit, since it has substantially more data.
 
 **Relevance-filter input consistency.** Section S-3.11 described the global-inference
 input as title+abstract, whereas the deployed classifier used the abstract field
