@@ -6,7 +6,7 @@ Requires the precomputed SetFit-relevant-document embeddings file "embs_pred.npy
 SetFit filter, in the same order as the EVoC run). This file is ~126 MB, over
 GitHub's file size limit, so it is NOT stored in the repository tree: download
 `embs_pred.npy` (float32, 32,223 x 1024) from this repository's GitHub Release assets
-[release URL: TODO once published], together with `embs_pred_row_ids.csv` (row ->
+(https://github.com/lcazevedo/Paper_Hydrogen_Production_Research_with_NLP/releases/tag/embeddings-v1), together with `embs_pred_row_ids.csv` (row ->
 unique_id/doi; rows 32,114-32,222 are the 109 relevant documents later excluded for
 missing metadata and carry no id), and place them alongside this script (or edit
 EMBEDDINGS_FILE below).
