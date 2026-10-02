@@ -46,7 +46,7 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `amostra_500_audited.xlsx`, `audit_500_accuracy_F1_score_confusion_matrix.py` — 500-sentence manual audit of the challenge classification (accuracy/F1/confusion matrix)
 * `research_scope_category_validation.py` — category-specific precision/recall for "Research Scope, Novelty, and Generalization"
 * `setfit_group_aware_validation.py`, `setfit_group_split_manifest.csv` — topic-held-out `GroupShuffleSplit` validation of the SetFit filter (manifest is text-free; the script needs the non-deposited gold-standard text to train)
-* `evoc_clustering_sensitivity_analysis.py` — topic-model stability under `noise_level` and granularity perturbations (needs the non-deposited precomputed embeddings)
+* `evoc_clustering_sensitivity_analysis.py` — topic-model stability under `noise_level` and granularity perturbations (needs the precomputed embeddings `embs_pred.npy` + `embs_pred_row_ids.csv`, distributed as GitHub Release assets rather than in the repository tree because of file size)
 * `challenges_classified_v3_optimized.xlsx`, `controversies_label_classified_sample500.csv`, `directions_label_classified_sample500.csv` — label→category mapping samples used by `pipeline/`
 * `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
 * `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
