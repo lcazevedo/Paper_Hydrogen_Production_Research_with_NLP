@@ -1,12 +1,15 @@
 """
 Topic-model stability / sensitivity analysis (Reviewer 2, point #2; audit issue #7).
 
-Requires the precomputed SetFit-relevant-document embeddings file "embs_pred.pkl"
+Requires the precomputed SetFit-relevant-document embeddings file "embs_pred.npy"
 (one 1024-d vector per one of the 32,223 documents classified as relevant by the
 SetFit filter, in the same order as the EVoC run). This file is ~126 MB, over
-GitHub's un-LFS-tracked file size limit, so it is NOT stored in this repository.
-Request it from the corresponding author or fetch it from [external storage link,
-TODO], and place it alongside this script (or edit EMBEDDINGS_FILE below).
+GitHub's file size limit, so it is NOT stored in the repository tree: download
+`embs_pred.npy` (float32, 32,223 x 1024) from this repository's GitHub Release assets
+(https://github.com/lcazevedo/Paper_Hydrogen_Production_Research_with_NLP/releases/tag/embeddings-v1), together with `embs_pred_row_ids.csv` (row ->
+unique_id/doi; rows 32,114-32,222 are the 109 relevant documents later excluded for
+missing metadata and carry no id), and place them alongside this script (or edit
+EMBEDDINGS_FILE below).
 
 Reproduced result (this run, evoc==<record installed version here>, no explicit
 random_state exposed by EVoC.EVoC()):
@@ -22,11 +25,11 @@ match precisely -- EVoC does not expose a random_state here, so its internal
 hierarchy can differ slightly by library version or run. Confirm with the original
 environment/version before citing these exact figures in the response letter.
 """
-import dill as pickle
+import numpy as np
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
 import evoc
 
-EMBEDDINGS_FILE = "embs_pred.pkl"
+EMBEDDINGS_FILE = "embs_pred.npy"
 TARGET_K = 25
 
 
@@ -40,8 +43,7 @@ def get_target_layer(layers, target_k):
 
 
 print("1. Loading precomputed embeddings...")
-with open(EMBEDDINGS_FILE, "rb") as handle:
-    embs = pickle.load(handle)
+embs = np.load(EMBEDDINGS_FILE)
 
 print("2. Training EVoC baseline (noise_level=0.0)...")
 evoc_base = evoc.EVoC(noise_level=0.0)
