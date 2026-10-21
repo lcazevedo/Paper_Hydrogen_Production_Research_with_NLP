@@ -51,7 +51,7 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
 * `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
 * `reproduce_table1_from_original_model.py` — reproduces Table 1's topic sizes from `pipeline/model_pred/`
-* `relevance_index_reproduction_and_sensitivity.py` — reproduces the Relevance Index ranking (Table 1) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
+* `relevance_index_reproduction_and_sensitivity.py` — reproduces both columns of Table 1 (Relevance Index without and with review articles, with ranks) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
 * `resolve_seed_doi_conflicts.py` — de-duplicates and resolves DOI conflicts in the raw seed file, producing `data/seed_papers_resolved.csv`
 * `seed_recall_analysis.py` — reports how many of the 473 resolved seed documents were retrieved by the search query and retained in the final corpus, by study type
 * `growth_model_fitting.py` — growth-model fitting library (Linear/Exponential/Plateau/Logistic/Gompertz under Poisson/NB2, AICc model selection)

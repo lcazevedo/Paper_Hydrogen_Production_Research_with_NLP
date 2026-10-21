@@ -41,7 +41,8 @@ python3 reproduce_table1_from_original_model.py
 # -> reproduces Table 1's topic sizes from the original BERTopic/EVoC model
 
 python3 relevance_index_reproduction_and_sensitivity.py
-# -> reproduces Table 1's Relevance Index ranking exactly, then reports the
+# -> reproduces Table 1's Relevance Index values and ranks (without and with
+#    review articles) exactly, then reports the
 #    citation-rate-unit sensitivity check (rho=0.984) and a unit-invariant
 #    z-scored alternative (rho=0.943 vs. the published ranking)
 
