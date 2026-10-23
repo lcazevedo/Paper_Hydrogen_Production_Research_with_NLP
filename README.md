@@ -29,6 +29,8 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `seed_papers_extracted_v2.csv` — the 476-row seed set used to build the search query, as originally exported (has 1 duplicate pair and 10 rows with a filename/PDF-text DOI disagreement -- see `validation/resolve_seed_doi_conflicts.py`)
 * `seed_papers_resolved.csv` — the same set de-duplicated and DOI-resolved to 473 distinct documents (344 experimental, 129 theoretical)
 * `final_corpus_data.csv.zip` — per-document topic and challenge/direction/controversy group assignments
+* `df_data_phrases.csv.zip` — one row per abstract sentence (223,180) with its extracted challenge/direction/controversy label and group (labels only, no title/abstract text)
+* `challenges_classified_v1.csv` — the curated label→category dictionary (47,878 normalized labels, with sentence counts) applied by `pipeline/6_group_challenges.py`
 
 ### `pipeline/` — corpus and label construction
 * `classify_relevant_setfit.ipynb` — SetFit relevance filter (see `validation/` for the group-aware validation of this step)
@@ -48,10 +50,11 @@ analysis/     Notebooks that generate the manuscript's figures and tables
 * `setfit_group_aware_validation.py`, `setfit_group_split_manifest.csv` — topic-held-out `GroupShuffleSplit` validation of the SetFit filter (manifest is text-free; the script needs the non-deposited gold-standard text to train)
 * `evoc_clustering_sensitivity_analysis.py` — topic-model stability under `noise_level` and granularity perturbations (needs the precomputed embeddings `embs_pred.npy` + `embs_pred_row_ids.csv`, distributed as GitHub Release assets rather than in the repository tree because of file size)
 * `challenges_classified_v3_optimized.xlsx`, `controversies_label_classified_sample500.csv`, `directions_label_classified_sample500.csv` — label→category mapping samples used by `pipeline/`
-* `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of the supervised classifier that scales challenge classification beyond the curated label dictionary
+* `challenge_dictionary_check.py` — applies the dictionary to the deposited sentence-level labels and reproduces every sentence's category (0 mismatches over 223,180 sentences)
+* `challenge_stage2_classifier_reconstruction.py` — a documented **reconstruction** (not a recovery of the original code/weights — see `REPRODUCIBILITY.md`) of a supervised classifier (supplementary; not needed to reproduce the category assignments) that scales challenge classification beyond the curated label dictionary
 * `audit_100_documents_labels_only.csv`, `audit_100_documents_study_type.py` — 100-document experimental/computational study-type audit (labels only; the original spreadsheet carried raw WoS text and is not deposited)
 * `reproduce_table1_from_original_model.py` — reproduces Table 1's topic sizes from `pipeline/model_pred/`
-* `relevance_index_reproduction_and_sensitivity.py` — reproduces the Relevance Index ranking (Table 1) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
+* `relevance_index_reproduction_and_sensitivity.py` — reproduces both columns of Table 1 (Relevance Index without and with review articles, with ranks) exactly from `pipeline/relevance_index_input_data.csv`, and tests its sensitivity to the citation-rate time unit
 * `resolve_seed_doi_conflicts.py` — de-duplicates and resolves DOI conflicts in the raw seed file, producing `data/seed_papers_resolved.csv`
 * `seed_recall_analysis.py` — reports how many of the 473 resolved seed documents were retrieved by the search query and retained in the final corpus, by study type
 * `growth_model_fitting.py` — growth-model fitting library (Linear/Exponential/Plateau/Logistic/Gompertz under Poisson/NB2, AICc model selection)

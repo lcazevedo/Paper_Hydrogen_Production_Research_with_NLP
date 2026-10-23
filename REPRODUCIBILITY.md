@@ -9,13 +9,14 @@ Most of the core pipeline claims are **fully reproduced** from the deposited dat
 alone: the relevance-filter validation (split, accuracy, F1, confusion matrix), the
 challenge-category denominator, the "Research Scope" category validation, the
 experimental/computational study-type audit, and the topic-model sizes (Table 1),
-using the original saved topic model. One component — a supervised classifier used
-to scale challenge classification beyond a curated label dictionary — could not be
-recovered; a documented **reconstruction** with an equivalent architecture is
-deposited instead and clearly marked as such, alongside the deterministic grouping
-step that was recovered. We also identified and resolved an input-consistency issue
+using the original saved topic model. The sentence-level challenge categories
+are fully accounted for by a deterministic label-to-category dictionary, whose category
+totals reproduce the deposited dataset exactly; a supervised classifier with an
+equivalent architecture is deposited as a supplementary, clearly marked reconstruction
+(the original classifier script and weights were not recovered, and are not needed to
+reproduce the assignments). We also identified and resolved an input-consistency issue
 in the relevance classifier, and a gold-standard-size discrepancy that turned out to
-be a target-vs-realized split-size artifact rather than a data mismatch (both
+be the training size of the original random split rather than a data mismatch (both
 documented below).
 
 ## Quick verification
@@ -41,9 +42,15 @@ python3 reproduce_table1_from_original_model.py
 # -> reproduces Table 1's topic sizes from the original BERTopic/EVoC model
 
 python3 relevance_index_reproduction_and_sensitivity.py
-# -> reproduces Table 1's Relevance Index ranking exactly, then reports the
+# -> reproduces Table 1's Relevance Index values and ranks (without and with
+#    review articles) exactly, then reports the
 #    citation-rate-unit sensitivity check (rho=0.984) and a unit-invariant
 #    z-scored alternative (rho=0.943 vs. the published ranking)
+
+python3 challenge_dictionary_check.py
+# -> applying the label->category dictionary (47,878 labels) to the 223,180 deposited
+#    sentence-level labels reproduces every sentence's category (0 mismatches); the
+#    16,647 "Uncategorized" sentences are exactly those labelled "No Challenge"
 
 python3 reproduce_growth_model_fitting.py
 # -> refits all 25 topics' 2014-2024 growth models (Linear/Exponential/Logistic/
@@ -84,13 +91,13 @@ independently checkable.
 |---|---|---|
 | SetFit relevance-filter `GroupShuffleSplit` validation | **Fully reproduced.** Split reproduces exactly (train 2,969 / test 1,004; 712 relevant, 292 not relevant). The deposited checkpoint reproduces the published accuracy (0.9153→0.92), F1 (0.94/0.86), and confusion matrix ([[270,22],[63,649]]) exactly. | `validation/setfit_group_aware_validation.py`, `validation/setfit_group_split_manifest.csv`, `validation/rel-nrel-100perc-all-MiniLM-L6-v2-GroupSplit.zip` |
 | Topic-model sizes and stability | **Fully reproduced.** The original saved topic model reproduces Table 1 almost exactly (~0.1-0.3% differences, matching the 109 metadata-excluded documents). | `pipeline/model_pred/`, `pipeline/topic_assignment_original_model.csv`, `validation/reproduce_table1_from_original_model.py`; independent re-fit sensitivity check in `validation/evoc_clustering_sensitivity_analysis.py` |
-| Challenge-classification pipeline: grouping step + 500-sentence audit + supervised classifier | Grouping step (`6_group_challenges.py`) recovered and deposited (deterministic label→group merge). The supervised classifier's script/weights were **not recoverable**; a documented *reconstruction* with an equivalent architecture is deposited instead, clearly marked as such. The 500-sentence audit fully reproduces. | `pipeline/6_group_challenges.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
+| Challenge-classification pipeline: label→category grouping + 500-sentence audit + supplementary classifier | **Fully reproduced, sentence by sentence.** Applying the dictionary (`data/challenges_classified_v1.csv`, 47,878 distinct normalized labels, none mapped to more than one category; the mapping applied by `pipeline/6_group_challenges.py`) to the 223,180 deposited sentence-level labels (`data/df_data_phrases.csv.zip`; labels and categories only, no title/abstract text) reproduces every sentence's category (0 mismatches); all 206,533 categorized sentences carry a label in the dictionary, and all 16,647 "Uncategorized" sentences carry the extraction label "No Challenge". The dictionary's per-category counts also match the 12 category totals of `data/final_corpus_data.csv.zip`. The 500-sentence audit fully reproduces. A TF-IDF + Logistic Regression classifier trained on the dictionary is deposited as a documented *reconstruction* (the original classifier script/weights were not recovered; it is supplementary and not needed to reproduce the assignments). | `pipeline/6_group_challenges.py`, `data/challenges_classified_v1.csv`, `data/df_data_phrases.csv.zip`, `validation/challenge_dictionary_check.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
 | Challenge-category denominator | **Fully reproduced** from the already-public `final_corpus_data.csv`. | `validation/challenge_denominator_funnel.py` |
 | "Research Scope" category sample and precision/recall | **Fully reproduced**, no new data needed. | `validation/research_scope_category_validation.py` |
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
 | Seed-set recall | **Reproduced**, with a data-quality fix applied first (see notes below): the raw seed file has 476 rows but only 473 distinct documents. After resolving this: 473 distinct seeds (344 experimental, 129 theoretical); Experimental 257/344 (74.7%) retrieved, 240/344 (69.8%) retained; Theoretical 72/129 (55.8%) retrieved, 68/129 (52.7%) retained. | `validation/resolve_seed_doi_conflicts.py`, `validation/seed_recall_analysis.py`, `data/seed_papers_resolved.csv` |
 | Relevance-filter input consistency (training vs. deployment) | **Resolved.** The SI described the wrong input for global inference; corrected to describe the input actually deployed, with a validation check confirming equivalent performance (0.9153 vs. 0.9104 accuracy on the same held-out test set). | `validation/abstract_vs_title_abstract_inference.py` |
-| Gold-standard size (SI text vs. deposited file) | **Resolved.** The SI's stated size (3,178 records) is the *target* size of the `GroupShuffleSplit`'s 80% training partition (`test_size=0.2`, applied to the full 3,973-record gold standard: 0.8×3,973=3,178.4), not a different dataset. Because the split must keep each preliminary cluster whole, the realized partition sizes differ from the 80/20 target — the deposited split (`random_state=42`) comes out to 2,969/1,004 (74.7%/25.3%) rather than ≈3,178/795. Confirmed with the corresponding author. | `validation/setfit_group_aware_validation.py` |
+| Gold-standard size (SI text vs. deposited file) | **Resolved.** The SI's stated size (3,178 records; 1,809 relevant / 1,369 not relevant) is the training partition of the *original* plain random 80/20 split of the 3,973-record gold standard (`train_test_split(test_size=0.2, random_state=42)` reproduces exactly 1,809/1,369 for training and 795 for testing; this split was used to train the classifier that built the corpus and is the one reported in the earlier published scientometric study). The group-aware (topic-held-out) validation reported here uses a different partition (2,969 train / 1,004 test) and is a re-validation of the same gold standard, not a different dataset. | `validation/setfit_group_aware_validation.py` |
 | Relevance Index dimensional-homogeneity check | **Reproduced and tested.** The published ranking (Table 1) reproduces exactly from the deposited per-document data. The index sums a dimensional quantity (citations per year) with two dimensionless ones (top-decile membership, log topic size), so nothing guarantees its ranking is invariant to the citation-rate time unit; we tested this directly. Switching citations-per-year to citations-per-month gives Spearman ρ=0.984 with the published ranking: only the citation-rate term (50% of the weight) is unit-dependent, since decile membership is thresholded on raw citation counts, not a rate, and log topic size does not involve citations at all. A fully unit-invariant alternative (z-scoring each component before combining) correlates at ρ=0.943 with the published ranking; the top 3 ranks, including the 2nd-rank position referenced in the Conclusions, are unchanged. | `pipeline/relevance_index_input_data.csv`, `validation/relevance_index_reproduction_and_sensitivity.py` |
 | Topic-level growth-model selection (2014-2024) | **Fully reproduced.** Refitting all 25 topics' annual counts (Linear/Exponential/Logistic/Gompertz, Poisson/NB2, selected by corrected AIC) reproduces the SI's selected model, Akaike weight, and AICc for every topic. Two of the SI's fitted-parameter table cells have a typo (a missing leading digit in the "A" column, see notes below); everything else, including the model-selection table, is consistent. | `pipeline/relevance_index_input_data.csv`, `validation/growth_model_fitting.py`, `validation/reproduce_growth_model_fitting.py` |
 
@@ -103,12 +110,24 @@ confirms 1,397 not_relevant + 1,572 relevant), so it was never exposed to the
 scratch was not attempted here: on Apple-Silicon (MPS) the described configuration
 (9,280 steps) runs at roughly 450-550 s/step, impractical on that hardware.
 
-**Challenge classifier.** `validation/challenge_stage2_classifier_reconstruction.py`
-is an explicitly-labelled reconstruction, not the original code: TF-IDF + Logistic
-Regression (hyperparameters chosen by 5-fold `GridSearchCV`) trained on the deposited
-label→category dictionary (`challenges_classified_v3_optimized.xlsx`). 5-fold CV
-accuracy 0.922 (unweighted per unique label) / 0.969 (weighted by frequency). This is
-documented explicitly as a reconstruction, not recovered code.
+**Challenge classification.** For every abstract sentence, an LLM either extracts a short
+challenge label or returns "No Challenge". Each extracted label is mapped to one of the 12
+categories by a curated label→category dictionary (`data/challenges_classified_v1.csv`,
+applied by `pipeline/6_group_challenges.py`, which lowercases and strips each label); sentences
+labelled "No Challenge" (16,647 of 223,180, 7.46%) are reported as "Uncategorized" and excluded
+from the category percentages. `data/df_data_phrases.csv.zip` deposits, for each sentence, its
+extracted label and final category (plus the analogous direction/controversy labels and groups),
+without title/abstract text, so the mapping can be rerun end to end with
+`validation/challenge_dictionary_check.py` (0 mismatches over 223,180 sentences).
+`validation/challenge_stage2_classifier_reconstruction.py` is a separate, explicitly labelled
+reconstruction of a supervised classifier (TF-IDF + Logistic Regression, hyperparameters chosen
+by 5-fold `GridSearchCV`) trained on a curated subset of the dictionary
+(`challenges_classified_v3_optimized.xlsx`; all its labels are in the dictionary, with
+identical categories); 5-fold CV accuracy 0.922 (unweighted per unique label) / 0.969 (weighted
+by frequency). It is not the original code, and it is not needed to reproduce the reported
+assignments. Because the LLM labels almost every sentence (92.5%) rather than only genuine
+challenge statements, routine descriptive sentences can still receive a category; the category
+frequencies therefore describe the thematic composition of labelled sentences.
 
 **Seed-file DOI resolution.** The raw seed file (`data/seed_papers_extracted_v2.csv`)
 has 476 rows carrying two DOI fields per document, extracted two different ways
@@ -154,20 +173,19 @@ curve, so its exact asymptote is not tightly identified — independent refits l
 different large values of A with similarly good AICc; the other topic's asymptote
 reproduces to the exact digit, since it has substantially more data.
 
-**Gold-standard size: split target vs. realized size.** The SI states a
-gold-standard size of 3,178 labelled records (1,809 relevant / 1,369 not relevant);
-`rel_nrel.csv`, used for validation here, has 3,973 records (2,284 relevant / 1,689
-not relevant) in total. These are not two different underlying datasets: the
-relevance-filter validation calls `GroupShuffleSplit(test_size=0.2, random_state=42)`
-on the full 3,973-record file, targeting an 80/20 train/test split — 80% of 3,973 is
-3,178.4, matching the SI's number almost exactly. `GroupShuffleSplit` keeps every
-preliminary cluster (the grouping unit) entirely on one side of the split, so it can
-only approximate the requested ratio; the actual realized split deposited here comes
-out to 2,969 train / 1,004 test (74.7%/25.3%) rather than the targeted ≈3,178/795.
-The SI's number reflects the split's intended target (from the same procedure, at
-the same 0.2 test-size setting), not a mismatch between files. This does not affect
-the reported classifier performance, which is evaluated on the realized (deposited)
-held-out test set.
+**Gold-standard size: original random split vs. group-aware re-validation.** The SI
+states a gold-standard size of 3,178 labelled records (1,809 relevant / 1,369 not
+relevant); `rel_nrel.csv`, used for validation here, has 3,973 records (2,284 relevant /
+1,689 not relevant) in total. These are not two different datasets. The classifier that
+produced the corpus was trained with a plain random 80/20 split of the 3,973 records:
+`train_test_split(test_size=0.2, random_state=42)` yields exactly 1,809 relevant /
+1,369 not relevant for training (3,178 records) and 795 for testing, the test size
+reported in the earlier published scientometric study. The group-aware validation
+described in the SI re-evaluates the same gold standard with topic-held-out partitions
+(`GroupShuffleSplit`: 2,969 train / 1,004 test), which is why its accuracy (0.92) is
+lower than the 0.98 obtained under the random split (preliminary clusters can leak
+across a random split). The 3,178 figure therefore describes the training set of the
+original split, not the group-aware one.
 
 **Relevance-filter input consistency.** Section S-3.11 described the global-inference
 input as title+abstract, whereas the deployed classifier used the abstract field

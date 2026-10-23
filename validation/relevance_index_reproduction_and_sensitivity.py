@@ -94,3 +94,19 @@ print(f"Spearman rho (published ranking vs. z-scored ranking): {rho_z:.3f}")
 merged = published[["topic", "rank"]].merge(z_scored[["topic", "rank_z"]], on="topic")
 merged["rank_change"] = merged["rank"] - merged["rank_z"]
 print(merged.sort_values("rank").to_string(index=False))
+
+print("\nTable 1 (both columns): 'Without Review RI' (reviews excluded) and 'With Review RI' (all documents)...")
+with_review = compute_ri(df, df, cpy_divisor=1.0)
+with_review["rank"] = with_review["RI"].rank(ascending=False, method="min").astype(int)
+table1 = published.set_index("topic")[["RI", "rank"]].join(
+    with_review.set_index("topic")[["n", "RI", "rank"]], lsuffix="_without", rsuffix="_with"
+).sort_values("rank_without")
+
+
+def ordinal(k):
+    return f"{k}{'th' if 10 <= k % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(k % 10, 'th')}"
+
+
+for topic, r in table1.iterrows():
+    print(f"{topic} | n={int(r['n'])} | {r['RI_without']:.1f} ({ordinal(int(r['rank_without']))}) "
+          f"| {r['RI_with']:.1f} ({ordinal(int(r['rank_with']))})")
