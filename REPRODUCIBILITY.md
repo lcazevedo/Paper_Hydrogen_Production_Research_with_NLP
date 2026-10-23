@@ -9,11 +9,12 @@ Most of the core pipeline claims are **fully reproduced** from the deposited dat
 alone: the relevance-filter validation (split, accuracy, F1, confusion matrix), the
 challenge-category denominator, the "Research Scope" category validation, the
 experimental/computational study-type audit, and the topic-model sizes (Table 1),
-using the original saved topic model. One component — a supervised classifier used
-to scale challenge classification beyond a curated label dictionary — could not be
-recovered; a documented **reconstruction** with an equivalent architecture is
-deposited instead and clearly marked as such, alongside the deterministic grouping
-step that was recovered. We also identified and resolved an input-consistency issue
+using the original saved topic model. The sentence-level challenge categories
+are fully accounted for by a deterministic label-to-category dictionary, whose category
+totals reproduce the deposited dataset exactly; a supervised classifier with an
+equivalent architecture is deposited as a supplementary, clearly marked reconstruction
+(the original classifier script and weights were not recovered, and are not needed to
+reproduce the assignments). We also identified and resolved an input-consistency issue
 in the relevance classifier, and a gold-standard-size discrepancy that turned out to
 be the training size of the original random split rather than a data mismatch (both
 documented below).
@@ -45,6 +46,10 @@ python3 relevance_index_reproduction_and_sensitivity.py
 #    review articles) exactly, then reports the
 #    citation-rate-unit sensitivity check (rho=0.984) and a unit-invariant
 #    z-scored alternative (rho=0.943 vs. the published ranking)
+
+python3 challenge_dictionary_check.py
+# -> the label->category dictionary (47,878 labels) accounts for all 206,533 categorized
+#    sentence assignments; its 12 category totals match the deposited dataset exactly
 
 python3 reproduce_growth_model_fitting.py
 # -> refits all 25 topics' 2014-2024 growth models (Linear/Exponential/Logistic/
@@ -85,7 +90,7 @@ independently checkable.
 |---|---|---|
 | SetFit relevance-filter `GroupShuffleSplit` validation | **Fully reproduced.** Split reproduces exactly (train 2,969 / test 1,004; 712 relevant, 292 not relevant). The deposited checkpoint reproduces the published accuracy (0.9153→0.92), F1 (0.94/0.86), and confusion matrix ([[270,22],[63,649]]) exactly. | `validation/setfit_group_aware_validation.py`, `validation/setfit_group_split_manifest.csv`, `validation/rel-nrel-100perc-all-MiniLM-L6-v2-GroupSplit.zip` |
 | Topic-model sizes and stability | **Fully reproduced.** The original saved topic model reproduces Table 1 almost exactly (~0.1-0.3% differences, matching the 109 metadata-excluded documents). | `pipeline/model_pred/`, `pipeline/topic_assignment_original_model.csv`, `validation/reproduce_table1_from_original_model.py`; independent re-fit sensitivity check in `validation/evoc_clustering_sensitivity_analysis.py` |
-| Challenge-classification pipeline: grouping step + 500-sentence audit + supervised classifier | Grouping step (`6_group_challenges.py`) recovered and deposited (deterministic label→group merge). The supervised classifier's script/weights were **not recoverable**; a documented *reconstruction* with an equivalent architecture is deposited instead, clearly marked as such. The 500-sentence audit fully reproduces. | `pipeline/6_group_challenges.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
+| Challenge-classification pipeline: label→category grouping + 500-sentence audit + supplementary classifier | **Fully reproduced at the category level.** The deterministic grouping script (`6_group_challenges.py`) and its dictionary (`challenges_classified_v1.csv`, 47,878 distinct normalized labels, no label mapped to more than one category) account for all 206,533 categorized sentence assignments; the dictionary's per-category sentence counts match the deposited dataset exactly for all 12 categories. The dataset stores each sentence's final category but not its label text, so the check is done on the aggregate counts. The 500-sentence audit fully reproduces. A TF-IDF + Logistic Regression classifier trained on the dictionary is deposited as a documented *reconstruction* (the original classifier script/weights were not recovered; it is supplementary and not needed to reproduce the assignments). | `pipeline/6_group_challenges.py`, `validation/challenges_classified_v1.csv`, `validation/challenge_dictionary_check.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
 | Challenge-category denominator | **Fully reproduced** from the already-public `final_corpus_data.csv`. | `validation/challenge_denominator_funnel.py` |
 | "Research Scope" category sample and precision/recall | **Fully reproduced**, no new data needed. | `validation/research_scope_category_validation.py` |
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
@@ -104,12 +109,21 @@ confirms 1,397 not_relevant + 1,572 relevant), so it was never exposed to the
 scratch was not attempted here: on Apple-Silicon (MPS) the described configuration
 (9,280 steps) runs at roughly 450-550 s/step, impractical on that hardware.
 
-**Challenge classifier.** `validation/challenge_stage2_classifier_reconstruction.py`
-is an explicitly-labelled reconstruction, not the original code: TF-IDF + Logistic
-Regression (hyperparameters chosen by 5-fold `GridSearchCV`) trained on the deposited
-label→category dictionary (`challenges_classified_v3_optimized.xlsx`). 5-fold CV
-accuracy 0.922 (unweighted per unique label) / 0.969 (weighted by frequency). This is
-documented explicitly as a reconstruction, not recovered code.
+**Challenge classification.** Each extracted sentence-level label is mapped to one of
+the 12 categories by a curated label→category dictionary
+(`validation/challenges_classified_v1.csv`, applied by `pipeline/6_group_challenges.py`,
+which lowercases and strips each label; labels absent from the dictionary are
+"Uncategorized"). The dictionary lists how many sentences carry each label; summing those
+counts by category reproduces all 12 deposited category totals exactly (206,533
+categorized sentences), see `validation/challenge_dictionary_check.py`. The deposited
+dataset keeps only each sentence's final category, not the label text, so a
+sentence-by-sentence join is not possible from this repository alone.
+`validation/challenge_stage2_classifier_reconstruction.py` is a separate, explicitly
+labelled reconstruction of a supervised classifier (TF-IDF + Logistic Regression,
+hyperparameters chosen by 5-fold `GridSearchCV`) trained on a curated subset of the
+dictionary (`challenges_classified_v3_optimized.xlsx`); 5-fold CV accuracy 0.922
+(unweighted per unique label) / 0.969 (weighted by frequency). It is not the original
+code, and it is not needed to reproduce the reported assignments.
 
 **Seed-file DOI resolution.** The raw seed file (`data/seed_papers_extracted_v2.csv`)
 has 476 rows carrying two DOI fields per document, extracted two different ways
