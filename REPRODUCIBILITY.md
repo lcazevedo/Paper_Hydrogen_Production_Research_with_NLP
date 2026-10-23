@@ -48,8 +48,9 @@ python3 relevance_index_reproduction_and_sensitivity.py
 #    z-scored alternative (rho=0.943 vs. the published ranking)
 
 python3 challenge_dictionary_check.py
-# -> the label->category dictionary (47,878 labels) accounts for all 206,533 categorized
-#    sentence assignments; its 12 category totals match the deposited dataset exactly
+# -> applying the label->category dictionary (47,878 labels) to the 223,180 deposited
+#    sentence-level labels reproduces every sentence's category (0 mismatches); the
+#    16,647 "Uncategorized" sentences are exactly those labelled "No Challenge"
 
 python3 reproduce_growth_model_fitting.py
 # -> refits all 25 topics' 2014-2024 growth models (Linear/Exponential/Logistic/
@@ -90,7 +91,7 @@ independently checkable.
 |---|---|---|
 | SetFit relevance-filter `GroupShuffleSplit` validation | **Fully reproduced.** Split reproduces exactly (train 2,969 / test 1,004; 712 relevant, 292 not relevant). The deposited checkpoint reproduces the published accuracy (0.9153→0.92), F1 (0.94/0.86), and confusion matrix ([[270,22],[63,649]]) exactly. | `validation/setfit_group_aware_validation.py`, `validation/setfit_group_split_manifest.csv`, `validation/rel-nrel-100perc-all-MiniLM-L6-v2-GroupSplit.zip` |
 | Topic-model sizes and stability | **Fully reproduced.** The original saved topic model reproduces Table 1 almost exactly (~0.1-0.3% differences, matching the 109 metadata-excluded documents). | `pipeline/model_pred/`, `pipeline/topic_assignment_original_model.csv`, `validation/reproduce_table1_from_original_model.py`; independent re-fit sensitivity check in `validation/evoc_clustering_sensitivity_analysis.py` |
-| Challenge-classification pipeline: label→category grouping + 500-sentence audit + supplementary classifier | **Fully reproduced at the category level.** The deterministic grouping script (`6_group_challenges.py`) and its dictionary (`challenges_classified_v1.csv`, 47,878 distinct normalized labels, no label mapped to more than one category) account for all 206,533 categorized sentence assignments; the dictionary's per-category sentence counts match the deposited dataset exactly for all 12 categories. The dataset stores each sentence's final category but not its label text, so the check is done on the aggregate counts. The 500-sentence audit fully reproduces. A TF-IDF + Logistic Regression classifier trained on the dictionary is deposited as a documented *reconstruction* (the original classifier script/weights were not recovered; it is supplementary and not needed to reproduce the assignments). | `pipeline/6_group_challenges.py`, `validation/challenges_classified_v1.csv`, `validation/challenge_dictionary_check.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
+| Challenge-classification pipeline: label→category grouping + 500-sentence audit + supplementary classifier | **Fully reproduced, sentence by sentence.** Applying the dictionary (`data/challenges_classified_v1.csv`, 47,878 distinct normalized labels, none mapped to more than one category; the mapping applied by `pipeline/6_group_challenges.py`) to the 223,180 deposited sentence-level labels (`data/df_data_phrases.csv.zip`; labels and categories only, no title/abstract text) reproduces every sentence's category (0 mismatches); all 206,533 categorized sentences carry a label in the dictionary, and all 16,647 "Uncategorized" sentences carry the extraction label "No Challenge". The dictionary's per-category counts also match the 12 category totals of `data/final_corpus_data.csv.zip`. The 500-sentence audit fully reproduces. A TF-IDF + Logistic Regression classifier trained on the dictionary is deposited as a documented *reconstruction* (the original classifier script/weights were not recovered; it is supplementary and not needed to reproduce the assignments). | `pipeline/6_group_challenges.py`, `data/challenges_classified_v1.csv`, `data/df_data_phrases.csv.zip`, `validation/challenge_dictionary_check.py`, `validation/challenge_stage2_classifier_reconstruction.py`, `validation/audit_500_accuracy_F1_score_confusion_matrix.py`, `validation/amostra_500_audited.xlsx` |
 | Challenge-category denominator | **Fully reproduced** from the already-public `final_corpus_data.csv`. | `validation/challenge_denominator_funnel.py` |
 | "Research Scope" category sample and precision/recall | **Fully reproduced**, no new data needed. | `validation/research_scope_category_validation.py` |
 | Experimental/computational study-type audit (100 documents) | **Fully reproduced**: 27.0% overall error rate; 26 of the errors are hybrid experimental/computational studies (23 misclassified as Experimental). | `validation/audit_100_documents_study_type.py`, `validation/audit_100_documents_labels_only.csv` |
@@ -109,21 +110,24 @@ confirms 1,397 not_relevant + 1,572 relevant), so it was never exposed to the
 scratch was not attempted here: on Apple-Silicon (MPS) the described configuration
 (9,280 steps) runs at roughly 450-550 s/step, impractical on that hardware.
 
-**Challenge classification.** Each extracted sentence-level label is mapped to one of
-the 12 categories by a curated label→category dictionary
-(`validation/challenges_classified_v1.csv`, applied by `pipeline/6_group_challenges.py`,
-which lowercases and strips each label; labels absent from the dictionary are
-"Uncategorized"). The dictionary lists how many sentences carry each label; summing those
-counts by category reproduces all 12 deposited category totals exactly (206,533
-categorized sentences), see `validation/challenge_dictionary_check.py`. The deposited
-dataset keeps only each sentence's final category, not the label text, so a
-sentence-by-sentence join is not possible from this repository alone.
-`validation/challenge_stage2_classifier_reconstruction.py` is a separate, explicitly
-labelled reconstruction of a supervised classifier (TF-IDF + Logistic Regression,
-hyperparameters chosen by 5-fold `GridSearchCV`) trained on a curated subset of the
-dictionary (`challenges_classified_v3_optimized.xlsx`); 5-fold CV accuracy 0.922
-(unweighted per unique label) / 0.969 (weighted by frequency). It is not the original
-code, and it is not needed to reproduce the reported assignments.
+**Challenge classification.** For every abstract sentence, an LLM either extracts a short
+challenge label or returns "No Challenge". Each extracted label is mapped to one of the 12
+categories by a curated label→category dictionary (`data/challenges_classified_v1.csv`,
+applied by `pipeline/6_group_challenges.py`, which lowercases and strips each label); sentences
+labelled "No Challenge" (16,647 of 223,180, 7.46%) are reported as "Uncategorized" and excluded
+from the category percentages. `data/df_data_phrases.csv.zip` deposits, for each sentence, its
+extracted label and final category (plus the analogous direction/controversy labels and groups),
+without title/abstract text, so the mapping can be rerun end to end with
+`validation/challenge_dictionary_check.py` (0 mismatches over 223,180 sentences).
+`validation/challenge_stage2_classifier_reconstruction.py` is a separate, explicitly labelled
+reconstruction of a supervised classifier (TF-IDF + Logistic Regression, hyperparameters chosen
+by 5-fold `GridSearchCV`) trained on a curated subset of the dictionary
+(`challenges_classified_v3_optimized.xlsx`; all its labels are in the dictionary, with
+identical categories); 5-fold CV accuracy 0.922 (unweighted per unique label) / 0.969 (weighted
+by frequency). It is not the original code, and it is not needed to reproduce the reported
+assignments. Because the LLM labels almost every sentence (92.5%) rather than only genuine
+challenge statements, routine descriptive sentences can still receive a category; the category
+frequencies therefore describe the thematic composition of labelled sentences.
 
 **Seed-file DOI resolution.** The raw seed file (`data/seed_papers_extracted_v2.csv`)
 has 476 rows carrying two DOI fields per document, extracted two different ways
